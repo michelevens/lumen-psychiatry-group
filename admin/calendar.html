@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XKV341Q96S"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XKV341Q96S");</script>
+<script src="/ga-events.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://accounts.google.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://www.google.com; frame-src https://accounts.google.com;">
+
+  <title>Appointment Calendar — Lumen</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --teal: #2C4A5A; --teal-dark: #1a3545; --gold: #D4A855; --sage: #4a7c6f; --slate: #64748b; --light: #f8fafb; --red: #ef4444; --green: #22c55e; --amber: #f59e0b; --blue: #3b82f6; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1e293b; background: var(--light); }
+
+    /* Auth Gate */
+    .auth-gate { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #1a3545 0%, #2C4A5A 50%, #4a7c6f 100%); }
+    .auth-gate.hidden { display: none; }
+    .auth-box { background: white; border-radius: 16px; padding: 48px 40px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 420px; width: 90%; }
+    .auth-box .logo-icon { width: 60px; height: 60px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; background: var(--teal-dark); border-radius: 12px; color: white; font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 700; }
+    .auth-box h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; color: var(--teal-dark); margin-bottom: 6px; }
+    .auth-box p { color: var(--slate); font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
+    .auth-box .error { color: var(--red); font-size: 13px; margin-top: 12px; display: none; }
+    #g_id_onload, .g_id_signin { display: flex; justify-content: center; }
+
+    /* Main App */
+    .app { display: none; }
+    .app.visible { display: block; }
+
+    .header { background: var(--teal-dark); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .header h1 { color: white; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; }
+    .header-actions { display: flex; gap: 12px; align-items: center; }
+    .header a, .header button { color: white; text-decoration: none; font-size: 13px; background: none; border: 1px solid rgba(255,255,255,0.3); padding: 6px 16px; border-radius: 6px; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+    .header a:hover, .header button:hover { background: rgba(255,255,255,0.1); }
+    .user-info { color: rgba(255,255,255,0.7); font-size: 12px; margin-right: 4px; }
+
+    .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+    /* Setup Banner */
+    .setup-banner { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 12px; }
+    .setup-banner.hidden { display: none; }
+    .setup-banner .sb-icon { font-size: 20px; line-height: 1; }
+    .setup-banner .sb-text { flex: 1; }
+    .setup-banner .sb-text strong { display: block; margin-bottom: 4px; color: #92400e; }
+    .setup-banner .sb-text p { font-size: 13px; color: #78350f; margin: 0; }
+
+    /* Stats Bar */
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: white; border-radius: 10px; padding: 16px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 4px solid transparent; transition: transform 0.2s, box-shadow 0.2s; }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .stat-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--slate); margin-bottom: 4px; font-weight: 500; }
+    .stat-card .value { font-size: 28px; font-weight: 700; color: var(--teal-dark); }
+    .stat-card.teal { border-left-color: var(--teal); }
+    .stat-card.amber { border-left-color: var(--amber); }
+    .stat-card.amber .value { color: var(--amber); }
+    .stat-card.green { border-left-color: var(--green); }
+    .stat-card.green .value { color: var(--green); }
+    .stat-card.red { border-left-color: var(--red); }
+    .stat-card.red .value { color: var(--red); }
+
+    /* Toolbar */
+    .toolbar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .toolbar-left { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .toolbar-right { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+    /* Pill buttons */
+    .pill-group { display: inline-flex; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0; background: white; }
+    .pill-btn { padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; background: white; color: var(--slate); font-family: inherit; transition: all 0.2s; white-space: nowrap; }
+    .pill-btn:not(:last-child) { border-right: 1px solid #e2e8f0; }
+    .pill-btn.active { background: var(--teal); color: white; }
+    .pill-btn:hover:not(.active) { background: #f1f5f9; }
+
+    /* Status filter pills */
+    .status-filters { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+    .status-pill { padding: 6px 14px; font-size: 13px; font-weight: 500; cursor: pointer; border: 1px solid #e2e8f0; background: white; color: var(--slate); font-family: inherit; border-radius: 20px; transition: all 0.2s; }
+    .status-pill.active { border-color: var(--teal); background: var(--teal); color: white; }
+    .status-pill.active[data-status="pending"] { background: var(--amber); border-color: var(--amber); color: white; }
+    .status-pill.active[data-status="confirmed"] { background: var(--green); border-color: var(--green); color: white; }
+    .status-pill.active[data-status="declined"] { background: var(--red); border-color: var(--red); color: white; }
+    .status-pill:hover:not(.active) { background: #f1f5f9; }
+
+    /* Nav controls */
+    .nav-controls { display: flex; align-items: center; gap: 8px; }
+    .nav-btn { width: 36px; height: 36px; border-radius: 8px; border: 1px solid #e2e8f0; background: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--slate); transition: all 0.2s; }
+    .nav-btn:hover { background: #f1f5f9; color: var(--teal-dark); }
+    .nav-label { font-size: 15px; font-weight: 600; color: var(--teal-dark); min-width: 160px; text-align: center; }
+    .btn-today { padding: 6px 14px; font-size: 13px; font-weight: 600; border: 1px solid var(--teal); color: var(--teal); background: white; border-radius: 8px; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+    .btn-today:hover { background: var(--teal); color: white; }
+
+    /* Search */
+    .search-input { padding: 8px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-family: inherit; background: white; min-width: 200px; transition: border-color 0.2s; }
+    .search-input:focus { outline: none; border-color: var(--sage); }
+
+    /* Table (List View) */
+    .table-wrap { background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead th { background: var(--teal-dark); color: white; padding: 12px 14px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; position: sticky; top: 0; }
+    tbody td { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+    tbody tr { transition: background 0.15s; }
+    tbody tr:hover { background: #f8fafb; }
+    tbody tr.pending-row { border-left: 3px solid var(--gold); }
+
+    /* Status badges */
+    .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; text-transform: capitalize; }
+    .status-pending { background: #fef3c7; color: #92400e; }
+    .status-confirmed { background: #dcfce7; color: #166534; }
+    .status-declined { background: #fee2e2; color: #991b1b; }
+
+    /* Action buttons */
+    .action-btns { display: flex; gap: 6px; }
+    .btn-confirm { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; background: #dcfce7; color: #166534; font-family: inherit; transition: all 0.2s; }
+    .btn-confirm:hover { background: var(--green); color: white; }
+    .btn-decline { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; background: #fee2e2; color: #991b1b; font-family: inherit; transition: all 0.2s; }
+    .btn-decline:hover { background: var(--red); color: white; }
+    .btn-view { padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid #e2e8f0; background: white; color: var(--slate); font-family: inherit; transition: all 0.2s; }
+    .btn-view:hover { background: #f1f5f9; }
+
+    /* Month View */
+    .calendar-grid { display: none; background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); overflow: hidden; }
+    .calendar-grid.active { display: block; }
+    .cal-header { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--teal-dark); }
+    .cal-header-cell { padding: 10px; text-align: center; color: white; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .cal-body { display: grid; grid-template-columns: repeat(7, 1fr); }
+    .cal-day { min-height: 100px; border: 1px solid #f1f5f9; padding: 8px; cursor: pointer; transition: background 0.15s; position: relative; }
+    .cal-day:hover { background: #f8fafb; }
+    .cal-day.other-month { background: #fafbfc; color: #cbd5e1; }
+    .cal-day.today { background: #eff6ff; }
+    .cal-day.today .day-num { background: var(--teal); color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+    .day-num { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--teal-dark); }
+    .other-month .day-num { color: #cbd5e1; }
+    .cal-dots { display: flex; flex-wrap: wrap; gap: 3px; }
+    .cal-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .cal-dot.pending { background: var(--amber); }
+    .cal-dot.confirmed { background: var(--green); }
+    .cal-dot.declined { background: var(--red); }
+
+    /* Week View */
+    .week-grid { display: none; background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); overflow: hidden; }
+    .week-grid.active { display: block; }
+    .week-header { display: grid; grid-template-columns: 60px repeat(7, 1fr); background: var(--teal-dark); }
+    .week-header-cell { padding: 10px 8px; text-align: center; color: white; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .week-header-cell.time-col { color: rgba(255,255,255,0.5); }
+    .week-header-date { display: block; font-size: 18px; font-weight: 700; margin-top: 2px; }
+    .week-body { display: grid; grid-template-columns: 60px repeat(7, 1fr); max-height: 600px; overflow-y: auto; }
+    .week-time { padding: 8px 6px; font-size: 11px; color: var(--slate); text-align: right; border-bottom: 1px solid #f1f5f9; font-weight: 500; display: flex; align-items: flex-start; justify-content: flex-end; min-height: 60px; }
+    .week-cell { border: 1px solid #f1f5f9; min-height: 60px; padding: 2px; position: relative; }
+    .week-cell.today-col { background: #f0f9ff; }
+    .week-block { padding: 3px 6px; border-radius: 4px; font-size: 11px; font-weight: 500; margin-bottom: 2px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: opacity 0.15s; }
+    .week-block:hover { opacity: 0.8; }
+    .week-block.pending { background: #fef3c7; color: #92400e; border-left: 3px solid var(--amber); }
+    .week-block.confirmed { background: #dcfce7; color: #166534; border-left: 3px solid var(--green); }
+    .week-block.declined { background: #fee2e2; color: #991b1b; border-left: 3px solid var(--red); }
+
+    /* Day View */
+    .day-grid { display: none; background: white; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); overflow: hidden; }
+    .day-grid.active { display: block; }
+    .day-timeline { max-height: 700px; overflow-y: auto; }
+    .day-row { display: grid; grid-template-columns: 80px 1fr; min-height: 70px; border-bottom: 1px solid #f1f5f9; }
+    .day-time { padding: 12px; font-size: 13px; color: var(--slate); font-weight: 500; text-align: right; border-right: 2px solid #e2e8f0; }
+    .day-content { padding: 8px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .day-card { padding: 12px 16px; border-radius: 8px; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+    .day-card:hover { transform: translateX(4px); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .day-card.pending { background: #fffbeb; border-left: 4px solid var(--amber); }
+    .day-card.confirmed { background: #f0fdf4; border-left: 4px solid var(--green); }
+    .day-card.declined { background: #fef2f2; border-left: 4px solid var(--red); }
+    .day-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .day-card-name { font-weight: 600; font-size: 14px; color: var(--teal-dark); }
+    .day-card-details { font-size: 13px; color: var(--slate); margin-bottom: 8px; }
+    .day-card-actions { display: flex; gap: 6px; }
+
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; backdrop-filter: blur(2px); }
+    .modal-overlay.active { display: flex; }
+    .modal { background: white; border-radius: 14px; padding: 32px; width: 90%; max-width: 520px; max-height: 90vh; overflow-y: auto; animation: modalIn 0.25s ease; }
+    @keyframes modalIn { from { transform: scale(0.95) translateY(10px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    .modal h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; color: var(--teal-dark); margin-bottom: 20px; }
+    .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--slate); line-height: 1; }
+
+    .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: var(--slate); font-weight: 500; }
+    .detail-value { color: var(--teal-dark); font-weight: 600; text-align: right; max-width: 60%; }
+    .confirm-code-box { background: #f0f7fa; border: 1px solid #c8dfe8; border-radius: 8px; padding: 12px 16px; text-align: center; margin-bottom: 16px; }
+    .confirm-code-box .code-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--slate); margin-bottom: 4px; }
+    .confirm-code-box .code-value { font-size: 20px; font-weight: 700; color: var(--teal); font-family: 'SF Mono', 'Cascadia Code', monospace; letter-spacing: 1px; }
+
+    .modal-actions { display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end; }
+    .modal-actions button { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: inherit; transition: all 0.2s; }
+    .btn-modal-cancel { background: #f1f5f9; color: var(--slate); }
+    .btn-modal-cancel:hover { background: #e2e8f0; }
+    .btn-modal-confirm { background: var(--green); color: white; }
+    .btn-modal-confirm:hover { background: #16a34a; }
+    .btn-modal-decline { background: var(--red); color: white; }
+    .btn-modal-decline:hover { background: #dc2626; }
+
+    /* Confirm Dialog */
+    .confirm-dialog { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; align-items: center; justify-content: center; }
+    .confirm-dialog.active { display: flex; }
+    .confirm-box { background: white; border-radius: 14px; padding: 32px; max-width: 400px; width: 90%; text-align: center; animation: modalIn 0.25s ease; }
+    .confirm-box h3 { font-size: 18px; color: var(--teal-dark); margin-bottom: 8px; }
+    .confirm-box p { color: var(--slate); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+    .confirm-box-actions { display: flex; gap: 12px; justify-content: center; }
+    .confirm-box-actions button { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: inherit; transition: all 0.2s; }
+
+    /* Empty state */
+    .empty-state { text-align: center; padding: 60px 24px; color: var(--slate); }
+    .empty-state .empty-icon { font-size: 48px; margin-bottom: 16px; opacity: 0.3; }
+    .empty-state h3 { font-size: 18px; color: var(--teal-dark); margin-bottom: 8px; font-family: 'Playfair Display', Georgia, serif; }
+    .empty-state p { font-size: 14px; line-height: 1.5; }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--teal-dark); color: white; padding: 12px 24px; border-radius: 10px; font-size: 14px; z-index: 300; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.15); max-width: 400px; }
+    .toast.show { display: block; animation: slideUp 0.3s ease; }
+    .toast.success { background: #166534; }
+    .toast.error { background: #991b1b; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* Loading overlay */
+    .loading-overlay { display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.7); z-index: 250; align-items: center; justify-content: center; }
+    .loading-overlay.active { display: flex; }
+    .spinner { width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top-color: var(--sage); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .toolbar-left, .toolbar-right { flex-direction: column; }
+      .nav-label { min-width: auto; }
+      .header { flex-direction: column; gap: 12px; padding: 12px 16px; }
+      .header-actions { flex-wrap: wrap; justify-content: center; }
+      .container { padding: 16px; }
+      .search-input { width: 100%; min-width: auto; }
+      .calendar-grid, .week-grid, .day-grid { display: none !important; }
+      .table-wrap { display: block !important; }
+      .view-toggle-mobile-note { display: block; }
+      .auth-box { padding: 32px 24px; }
+      .cal-day { min-height: 70px; }
+      .modal { padding: 24px; }
+    }
+    .view-toggle-mobile-note { display: none; font-size: 12px; color: var(--slate); margin-top: 4px; }
+  </style>
+</head>
+<body>
+
+  <!-- Google Sign-In Gate -->
+  <div class="auth-gate" id="auth-gate">
+    <div class="auth-box">
+      <div class="logo-icon">E</div>
+      <h2>Appointment Calendar</h2>
+      <p>Sign in with your authorized Google account to manage patient appointments.</p>
+      <div id="google-signin-btn"></div>
+      <div class="error" id="auth-error">Access denied. This account is not authorized.</div>
+    </div>
+  </div>
+
+  <!-- Main App (hidden until authenticated) -->
+  <div class="app" id="app">
+    <header class="header">
+      <h1>Appointment Calendar</h1>
+      <div class="header-actions">
+        <span class="user-info" id="user-email"></span>
+        <a href="/admin/" rel="noopener noreferrer">Admin Home</a>
+        <button onclick="signOut()">Sign Out</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Setup Banner -->
+      <div class="setup-banner" id="setup-banner">
+        <div class="sb-icon">&#9888;</div>
+        <div class="sb-text">
+          <strong>Apps Script URL Not Configured</strong>
+          <p>Set the <code>APPS_SCRIPT_URL</code> variable in the page source to connect to your Google Sheets backend.</p>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar">
+        <div class="stat-card teal">
+          <div class="label">Total Requests</div>
+          <div class="value" id="stat-total">0</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="label">Pending Review</div>
+          <div class="value" id="stat-pending">0</div>
+        </div>
+        <div class="stat-card green">
+          <div class="label">Confirmed</div>
+          <div class="value" id="stat-confirmed">0</div>
+        </div>
+        <div class="stat-card red">
+          <div class="label">Declined</div>
+          <div class="value" id="stat-declined">0</div>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <!-- View toggle -->
+          <div class="pill-group" id="view-toggle">
+            <button class="pill-btn active" data-view="list" onclick="setView('list')">List</button>
+            <button class="pill-btn" data-view="month" onclick="setView('month')">Month</button>
+            <button class="pill-btn" data-view="week" onclick="setView('week')">Week</button>
+            <button class="pill-btn" data-view="day" onclick="setView('day')">Day</button>
+          </div>
+          <span class="view-toggle-mobile-note">Calendar views available on desktop only</span>
+
+          <!-- Date nav -->
+          <div class="nav-controls">
+            <button class="btn-today" onclick="goToday()">Today</button>
+            <button class="nav-btn" onclick="navPrev()" aria-label="Previous">&#8249;</button>
+            <span class="nav-label" id="nav-label">March 2026</span>
+            <button class="nav-btn" onclick="navNext()" aria-label="Next">&#8250;</button>
+          </div>
+        </div>
+
+        <div class="toolbar-right">
+          <!-- Status filter -->
+          <div class="status-filters" id="status-filters">
+            <button class="status-pill active" data-status="all" onclick="setStatusFilter('all')">All</button>
+            <button class="status-pill" data-status="pending" onclick="setStatusFilter('pending')">Pending</button>
+            <button class="status-pill" data-status="confirmed" onclick="setStatusFilter('confirmed')">Confirmed</button>
+            <button class="status-pill" data-status="declined" onclick="setStatusFilter('declined')">Declined</button>
+          </div>
+
+          <!-- Search -->
+          <input type="text" class="search-input" id="search-input" placeholder="Search patient name..." oninput="applyFilters()">
+        </div>
+      </div>
+
+      <!-- List View (default) -->
+      <div class="table-wrap" id="list-view">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Patient</th>
+              <th>Service</th>
+              <th>Insurance</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <div class="empty-state" id="empty-state" style="display:none;">
+          <div class="empty-icon">&#128197;</div>
+          <h3>No appointments found</h3>
+          <p>There are no appointment requests matching your filters. Try adjusting your search or status filter.</p>
+        </div>
+      </div>
+
+      <!-- Month View -->
+      <div class="calendar-grid" id="month-view">
+        <div class="cal-header">
+          <div class="cal-header-cell">Sun</div>
+          <div class="cal-header-cell">Mon</div>
+          <div class="cal-header-cell">Tue</div>
+          <div class="cal-header-cell">Wed</div>
+          <div class="cal-header-cell">Thu</div>
+          <div class="cal-header-cell">Fri</div>
+          <div class="cal-header-cell">Sat</div>
+        </div>
+        <div class="cal-body" id="month-body"></div>
+      </div>
+
+      <!-- Week View -->
+      <div class="week-grid" id="week-view"></div>
+
+      <!-- Day View -->
+      <div class="day-grid" id="day-view">
+        <div class="day-timeline" id="day-timeline"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal" style="position:relative;">
+      <button class="modal-close" onclick="closeDetailModal()" aria-label="Close">&times;</button>
+      <h2>Appointment Details</h2>
+      <div id="detail-content"></div>
+      <div class="modal-actions" id="detail-actions"></div>
+    </div>
+  </div>
+
+  <!-- Confirm Dialog -->
+  <div class="confirm-dialog" id="confirm-dialog">
+    <div class="confirm-box">
+      <h3 id="confirm-title">Decline Appointment?</h3>
+      <p id="confirm-msg">Are you sure you want to decline this appointment request? This action cannot be undone.</p>
+      <div class="confirm-box-actions">
+        <button class="btn-modal-cancel" onclick="closeConfirmDialog()">Cancel</button>
+        <button class="btn-modal-decline" id="confirm-action-btn" onclick="executeConfirmedAction()">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    // ==========================================
+    // CONFIGURATION
+    // ==========================================
+    var GOOGLE_CLIENT_ID = '360271129902-krk5ni5gunp7ggnmsnil5qhdn59uk821.apps.googleusercontent.com';
+    var ALLOWED_EMAIL = 'nageleymichel@gmail.com';
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz64vu0wcwGn1DPQB2SBpssuA03m_OZdZg8K6sv904ETw6gnoqofXguXycUIMJOKJ_34A/exec';
+
+    // ==========================================
+    // State
+    // ==========================================
+    var currentUser = null;
+    var idToken = null;
+    var allBookings = [];
+    var filteredBookings = [];
+    var currentView = 'list';
+    var currentDate = new Date();
+    var activeStatusFilter = 'all';
+    var pendingActionCode = null;
+    var pendingActionType = null;
+
+    // ==========================================
+    // Authentication (Google Sign-In)
+    // ==========================================
+    function handleCredentialResponse(response) {
+      var payload = parseJwt(response.credential);
+      if (payload.email === ALLOWED_EMAIL) {
+        currentUser = payload;
+        idToken = response.credential;
+        sessionStorage.setItem('admin_auth', 'true');
+        sessionStorage.setItem('admin_email', payload.email);
+        sessionStorage.setItem('admin_token', response.credential);
+        showApp();
+      } else {
+        document.getElementById('auth-error').style.display = 'block';
+      }
+    }
+
+    function parseJwt(token) {
+      try {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        return JSON.parse(decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join('')));
+      } catch (e) { return {}; }
+    }
+
+    function showApp() {
+      document.getElementById('auth-gate').classList.add('hidden');
+      document.getElementById('app').classList.add('visible');
+      if (sessionStorage.getItem('admin_email')) {
+        document.getElementById('user-email').textContent = sessionStorage.getItem('admin_email');
+      }
+      if (sessionStorage.getItem('admin_token')) {
+        idToken = sessionStorage.getItem('admin_token');
+      }
+      initApp();
+    }
+
+    function signOut() {
+      sessionStorage.removeItem('admin_auth');
+      sessionStorage.removeItem('admin_email');
+      sessionStorage.removeItem('admin_token');
+      currentUser = null;
+      idToken = null;
+      document.getElementById('app').classList.remove('visible');
+      document.getElementById('auth-gate').classList.remove('hidden');
+      document.getElementById('auth-error').style.display = 'none';
+    }
+
+    // Initialize Google Sign-In once the library loads
+    window.addEventListener('load', function() {
+      if (typeof google !== 'undefined' && google.accounts) {
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: handleCredentialResponse,
+          auto_select: true
+        });
+        google.accounts.id.renderButton(
+          document.getElementById('google-signin-btn'),
+          { theme: 'outline', size: 'large', width: 300, text: 'signin_with' }
+        );
+      }
+      // If already authenticated in this session
+      if (sessionStorage.getItem('admin_auth') === 'true') {
+        showApp();
+      }
+    });
+
+    // ==========================================
+    // API Calls
+    // ==========================================
+    function isConfigured() {
+      return APPS_SCRIPT_URL && APPS_SCRIPT_URL.length > 10;
+    }
+
+    function showLoading(show) {
+      document.getElementById('loading').classList.toggle('active', show);
+    }
+
+    async function loadBookings() {
+      if (!isConfigured()) return;
+      showLoading(true);
+      try {
+        var controller = new AbortController();
+        var timeout = setTimeout(function() { controller.abort(); }, 15000);
+        var url = APPS_SCRIPT_URL + '?action=getBookings&idToken=' + encodeURIComponent(idToken || '');
+        var resp = await fetch(url, { redirect: 'follow', headers: { 'Accept': 'application/json' }, signal: controller.signal });
+        clearTimeout(timeout);
+        var text = await resp.text();
+        var result;
+        try { result = JSON.parse(text); } catch(e) { throw new Error('Invalid JSON response'); }
+        if (result.success && Array.isArray(result.bookings)) {
+          allBookings = result.bookings;
+        } else if (result.success && Array.isArray(result.data)) {
+          allBookings = result.data;
+        } else if (Array.isArray(result)) {
+          allBookings = result;
+        } else {
+          throw new Error(result.error || 'Failed to load bookings');
+        }
+      } catch (e) {
+        console.error('Load bookings failed:', e);
+        showToast('Failed to load bookings: ' + e.message, 'error');
+        allBookings = [];
+      } finally {
+        showLoading(false);
+      }
+      applyFilters();
+    }
+
+    async function confirmBooking(code) {
+      if (!isConfigured() || !code) return;
+      showLoading(true);
+      try {
+        var resp = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          redirect: 'follow',
+          body: JSON.stringify({
+            action: 'reviewBooking',
+            idToken: idToken || '',
+            confirmationCode: code,
+            decision: 'confirmed'
+          })
+        });
+        var text = await resp.text();
+        var result;
+        try { result = JSON.parse(text); } catch(e) { throw new Error('Invalid response'); }
+        if (result.success) {
+          showToast('Appointment confirmed successfully.', 'success');
+          await loadBookings();
+        } else {
+          throw new Error(result.error || 'Failed to confirm');
+        }
+      } catch (e) {
+        console.error('Confirm failed:', e);
+        showToast('Failed to confirm appointment: ' + e.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    }
+
+    async function declineBooking(code) {
+      if (!isConfigured() || !code) return;
+      showLoading(true);
+      try {
+        var resp = await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          redirect: 'follow',
+          body: JSON.stringify({
+            action: 'reviewBooking',
+            idToken: idToken || '',
+            confirmationCode: code,
+            decision: 'declined'
+          })
+        });
+        var text = await resp.text();
+        var result;
+        try { result = JSON.parse(text); } catch(e) { throw new Error('Invalid response'); }
+        if (result.success) {
+          showToast('Appointment declined.', 'success');
+          await loadBookings();
+        } else {
+          throw new Error(result.error || 'Failed to decline');
+        }
+      } catch (e) {
+        console.error('Decline failed:', e);
+        showToast('Failed to decline appointment: ' + e.message, 'error');
+      } finally {
+        showLoading(false);
+      }
+    }
+
+    // ==========================================
+    // Filters & Search
+    // ==========================================
+    function setStatusFilter(status) {
+      activeStatusFilter = status;
+      document.querySelectorAll('.status-pill').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.status === status);
+      });
+      applyFilters();
+    }
+
+    function applyFilters() {
+      var search = document.getElementById('search-input').value.toLowerCase().trim();
+      filteredBookings = allBookings.filter(function(b) {
+        if (activeStatusFilter !== 'all' && getBookingStatus(b) !== activeStatusFilter) return false;
+        if (search && !getBookingName(b).toLowerCase().includes(search)) return false;
+        return true;
+      });
+      // Sort: pending pinned to top, then by date
+      filteredBookings.sort(function(a, b) {
+        var aStatus = getBookingStatus(a);
+        var bStatus = getBookingStatus(b);
+        if (aStatus === 'pending' && bStatus !== 'pending') return -1;
+        if (aStatus !== 'pending' && bStatus === 'pending') return 1;
+        return getBookingDate(a) - getBookingDate(b);
+      });
+      updateStats();
+      renderCurrentView();
+    }
+
+    // ==========================================
+    // Stats
+    // ==========================================
+    function updateStats() {
+      var total = allBookings.length;
+      var pending = 0, confirmed = 0, declined = 0;
+      allBookings.forEach(function(b) {
+        var s = getBookingStatus(b);
+        if (s === 'pending') pending++;
+        else if (s === 'confirmed') confirmed++;
+        else if (s === 'declined') declined++;
+      });
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-pending').textContent = pending;
+      document.getElementById('stat-confirmed').textContent = confirmed;
+      document.getElementById('stat-declined').textContent = declined;
+    }
+
+    // ==========================================
+    // View Management
+    // ==========================================
+    function setView(view) {
+      // On mobile, force list view
+      if (window.innerWidth < 768 && view !== 'list') {
+        showToast('Calendar views are available on desktop.');
+        return;
+      }
+      currentView = view;
+      document.querySelectorAll('#view-toggle .pill-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.view === view);
+      });
+      document.getElementById('list-view').style.display = view === 'list' ? '' : 'none';
+      document.getElementById('month-view').classList.toggle('active', view === 'month');
+      document.getElementById('week-view').classList.toggle('active', view === 'week');
+      document.getElementById('day-view').classList.toggle('active', view === 'day');
+      renderCurrentView();
+    }
+
+    function renderCurrentView() {
+      updateNavLabel();
+      switch (currentView) {
+        case 'list': renderListView(); break;
+        case 'month': renderMonthView(); break;
+        case 'week': renderWeekView(); break;
+        case 'day': renderDayView(); break;
+      }
+    }
+
+    // ==========================================
+    // Navigation
+    // ==========================================
+    function goToday() {
+      currentDate = new Date();
+      renderCurrentView();
+    }
+
+    function navPrev() {
+      switch (currentView) {
+        case 'list':
+        case 'month':
+          currentDate.setMonth(currentDate.getMonth() - 1);
+          break;
+        case 'week':
+          currentDate.setDate(currentDate.getDate() - 7);
+          break;
+        case 'day':
+          currentDate.setDate(currentDate.getDate() - 1);
+          break;
+      }
+      renderCurrentView();
+    }
+
+    function navNext() {
+      switch (currentView) {
+        case 'list':
+        case 'month':
+          currentDate.setMonth(currentDate.getMonth() + 1);
+          break;
+        case 'week':
+          currentDate.setDate(currentDate.getDate() + 7);
+          break;
+        case 'day':
+          currentDate.setDate(currentDate.getDate() + 1);
+          break;
+      }
+      renderCurrentView();
+    }
+
+    function updateNavLabel() {
+      var label = '';
+      var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      switch (currentView) {
+        case 'list':
+        case 'month':
+          label = months[currentDate.getMonth()] + ' ' + currentDate.getFullYear();
+          break;
+        case 'week':
+          var start = getWeekStart(currentDate);
+          var end = new Date(start);
+          end.setDate(end.getDate() + 6);
+          label = formatShortDate(start) + ' \u2013 ' + formatShortDate(end);
+          break;
+        case 'day':
+          label = formatFullDate(currentDate);
+          break;
+      }
+      document.getElementById('nav-label').textContent = label;
+    }
+
+    // ==========================================
+    // Date helpers
+    // ==========================================
+    var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var DAY_ABBR = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+    function getWeekStart(d) {
+      var day = new Date(d);
+      day.setDate(day.getDate() - day.getDay());
+      return day;
+    }
+
+    function formatShortDate(d) {
+      return MONTH_NAMES[d.getMonth()].substring(0, 3) + ' ' + d.getDate();
+    }
+
+    function formatFullDate(d) {
+      return DAY_NAMES[d.getDay()] + ', ' + MONTH_NAMES[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    }
+
+    function formatDisplayDate(dateStr) {
+      if (!dateStr) return '';
+      var d = new Date(dateStr);
+      if (isNaN(d.getTime())) return dateStr;
+      return (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+    }
+
+    function formatTime12(timeStr) {
+      if (!timeStr) return '';
+      if (timeStr.includes('AM') || timeStr.includes('PM')) return timeStr;
+      var parts = timeStr.split(':');
+      var h = parseInt(parts[0], 10);
+      var m = parts[1] || '00';
+      var ampm = h >= 12 ? 'PM' : 'AM';
+      if (h === 0) h = 12;
+      else if (h > 12) h -= 12;
+      return h + ':' + m + ' ' + ampm;
+    }
+
+    function getHour(timeStr) {
+      if (!timeStr) return 8;
+      if (timeStr.includes('AM') || timeStr.includes('PM')) {
+        var match = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
+        if (match) {
+          var h = parseInt(match[1], 10);
+          var period = match[3].toUpperCase();
+          if (period === 'PM' && h !== 12) h += 12;
+          if (period === 'AM' && h === 12) h = 0;
+          return h;
+        }
+      }
+      return parseInt(timeStr.split(':')[0], 10) || 8;
+    }
+
+    function isSameDay(d1, d2) {
+      return d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
+    }
+
+    function getBookingDate(b) {
+      return new Date(b.date || b.appointmentDate || 0);
+    }
+
+    function getBookingName(b) {
+      if (b.firstName || b.lastName) return ((b.firstName || '') + ' ' + (b.lastName || '')).trim();
+      return b.patientName || b.name || 'Unknown';
+    }
+
+    function getBookingStatus(b) {
+      return (b.status || 'pending').toLowerCase();
+    }
+
+    function getBookingTime(b) {
+      return b.time || b.appointmentTime || '';
+    }
+
+    function getBookingService(b) {
+      return b.service || b.serviceType || '';
+    }
+
+    function getBookingInsurance(b) {
+      return b.insurance || b.insuranceProvider || '';
+    }
+
+    function getBookingCode(b) {
+      return b.confirmation || b.confirmationCode || b.code || b.id || '';
+    }
+
+    function getInitials(name) {
+      if (!name) return '??';
+      var parts = name.trim().split(/\s+/);
+      if (parts.length >= 2) return (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
+      return name.substring(0,2).toUpperCase();
+    }
+
+    function getServiceAbbr(service) {
+      if (!service) return '';
+      var words = service.split(/\s+/);
+      if (words.length === 1) return service.substring(0,4);
+      return words.map(function(w) { return w[0]; }).join('').toUpperCase().substring(0,3);
+    }
+
+    // ==========================================
+    // List View
+    // ==========================================
+    function renderListView() {
+      var tbody = document.getElementById('table-body');
+      var emptyState = document.getElementById('empty-state');
+
+      if (filteredBookings.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.style.display = '';
+        return;
+      }
+      emptyState.style.display = 'none';
+
+      var html = '';
+      filteredBookings.forEach(function(b) {
+        var status = getBookingStatus(b);
+        var code = getBookingCode(b);
+        var isPending = status === 'pending';
+        html += '<tr class="' + (isPending ? 'pending-row' : '') + '" style="cursor:pointer;" onclick="openDetail(\'' + escapeAttr(code) + '\')">';
+        html += '<td>' + escapeHtml(formatDisplayDate(b.date || b.appointmentDate)) + '</td>';
+        html += '<td>' + escapeHtml(formatTime12(getBookingTime(b))) + '</td>';
+        html += '<td><strong>' + escapeHtml(getBookingName(b)) + '</strong></td>';
+        html += '<td>' + escapeHtml(getBookingService(b)) + '</td>';
+        html += '<td>' + escapeHtml(getBookingInsurance(b)) + '</td>';
+        html += '<td><span class="status-badge status-' + status + '">' + status + '</span></td>';
+        html += '<td class="action-btns" onclick="event.stopPropagation()">';
+        if (isPending) {
+          html += '<button class="btn-confirm" onclick="handleConfirm(\'' + escapeAttr(code) + '\')">Confirm</button>';
+          html += '<button class="btn-decline" onclick="handleDecline(\'' + escapeAttr(code) + '\')">Decline</button>';
+        }
+        html += '<button class="btn-view" onclick="openDetail(\'' + escapeAttr(code) + '\')">View</button>';
+        html += '</td></tr>';
+      });
+      tbody.innerHTML = html;
+    }
+
+    // ==========================================
+    // Month View
+    // ==========================================
+    function renderMonthView() {
+      var year = currentDate.getFullYear();
+      var month = currentDate.getMonth();
+      var firstDay = new Date(year, month, 1);
+      var startDate = new Date(firstDay);
+      startDate.setDate(startDate.getDate() - startDate.getDay());
+
+      var today = new Date();
+      var html = '';
+      var d = new Date(startDate);
+
+      for (var i = 0; i < 42; i++) {
+        var isOther = d.getMonth() !== month;
+        var isToday = isSameDay(d, today);
+        var classes = 'cal-day';
+        if (isOther) classes += ' other-month';
+        if (isToday) classes += ' today';
+
+        var dateStr = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+
+        html += '<div class="' + classes + '" onclick="goToDay(\'' + dateStr + '\')">';
+        html += '<div class="day-num">' + d.getDate() + '</div>';
+
+        // Dots for appointments on this day
+        var dayBookings = getBookingsForDate(d);
+        if (dayBookings.length > 0) {
+          html += '<div class="cal-dots">';
+          dayBookings.forEach(function(b) {
+            html += '<div class="cal-dot ' + getBookingStatus(b) + '" title="' + escapeAttr(getBookingName(b)) + '"></div>';
+          });
+          html += '</div>';
+        }
+        html += '</div>';
+
+        d.setDate(d.getDate() + 1);
+        if (i >= 34 && d.getMonth() !== month) break;
+      }
+
+      document.getElementById('month-body').innerHTML = html;
+    }
+
+    function getBookingsForDate(date) {
+      return filteredBookings.filter(function(b) {
+        var bd = getBookingDate(b);
+        return isSameDay(bd, date);
+      });
+    }
+
+    function goToDay(dateStr) {
+      currentDate = new Date(dateStr + 'T12:00:00');
+      setView('day');
+    }
+
+    // ==========================================
+    // Week View
+    // ==========================================
+    function renderWeekView() {
+      var weekStart = getWeekStart(currentDate);
+      var today = new Date();
+
+      var headerHtml = '<div class="week-header">';
+      headerHtml += '<div class="week-header-cell time-col">Time</div>';
+      for (var i = 0; i < 7; i++) {
+        var d = new Date(weekStart);
+        d.setDate(d.getDate() + i);
+        var isToday = isSameDay(d, today);
+        headerHtml += '<div class="week-header-cell" style="' + (isToday ? 'background:#1a3545;' : '') + '">';
+        headerHtml += DAY_ABBR[d.getDay()];
+        headerHtml += '<span class="week-header-date">' + d.getDate() + '</span>';
+        headerHtml += '</div>';
+      }
+      headerHtml += '</div>';
+
+      var bodyHtml = '<div class="week-body">';
+      for (var h = 8; h <= 18; h++) {
+        var timeLabel = h === 12 ? '12 PM' : (h > 12 ? (h-12) + ' PM' : h + ' AM');
+        bodyHtml += '<div class="week-time">' + timeLabel + '</div>';
+        for (var j = 0; j < 7; j++) {
+          var wd = new Date(weekStart);
+          wd.setDate(wd.getDate() + j);
+          var isTodayCol = isSameDay(wd, today);
+          bodyHtml += '<div class="week-cell' + (isTodayCol ? ' today-col' : '') + '">';
+
+          var hourBookings = filteredBookings.filter(function(b) {
+            var bd = getBookingDate(b);
+            return isSameDay(bd, wd) && getHour(getBookingTime(b)) === h;
+          });
+          hourBookings.forEach(function(b) {
+            var status = getBookingStatus(b);
+            bodyHtml += '<div class="week-block ' + status + '" onclick="openDetail(\'' + escapeAttr(getBookingCode(b)) + '\')">';
+            bodyHtml += getInitials(getBookingName(b)) + ' ' + getServiceAbbr(getBookingService(b));
+            bodyHtml += '</div>';
+          });
+
+          bodyHtml += '</div>';
+        }
+      }
+      bodyHtml += '</div>';
+
+      document.getElementById('week-view').innerHTML = headerHtml + bodyHtml;
+    }
+
+    // ==========================================
+    // Day View
+    // ==========================================
+    function renderDayView() {
+      var html = '';
+      var hasBookings = filteredBookings.some(function(b) { return isSameDay(getBookingDate(b), currentDate); });
+
+      for (var h = 8; h <= 18; h++) {
+        var timeLabel = h === 12 ? '12:00 PM' : (h > 12 ? (h-12) + ':00 PM' : h + ':00 AM');
+        html += '<div class="day-row">';
+        html += '<div class="day-time">' + timeLabel + '</div>';
+        html += '<div class="day-content">';
+
+        var hourBookings = filteredBookings.filter(function(b) {
+          var bd = getBookingDate(b);
+          return isSameDay(bd, currentDate) && getHour(getBookingTime(b)) === h;
+        });
+
+        hourBookings.forEach(function(b) {
+          var status = getBookingStatus(b);
+          var code = getBookingCode(b);
+          var isPending = status === 'pending';
+          html += '<div class="day-card ' + status + '" onclick="openDetail(\'' + escapeAttr(code) + '\')">';
+          html += '<div class="day-card-header">';
+          html += '<span class="day-card-name">' + escapeHtml(getBookingName(b)) + '</span>';
+          html += '<span class="status-badge status-' + status + '">' + status + '</span>';
+          html += '</div>';
+          html += '<div class="day-card-details">' + escapeHtml(getBookingService(b));
+          if (getBookingInsurance(b)) html += ' &middot; ' + escapeHtml(getBookingInsurance(b));
+          html += ' &middot; ' + escapeHtml(formatTime12(getBookingTime(b)));
+          html += '</div>';
+          if (isPending) {
+            html += '<div class="day-card-actions" onclick="event.stopPropagation()">';
+            html += '<button class="btn-confirm" onclick="handleConfirm(\'' + escapeAttr(code) + '\')">Confirm</button>';
+            html += '<button class="btn-decline" onclick="handleDecline(\'' + escapeAttr(code) + '\')">Decline</button>';
+            html += '</div>';
+          }
+          html += '</div>';
+        });
+
+        html += '</div></div>';
+      }
+
+      if (!hasBookings) {
+        html = '<div class="empty-state"><div class="empty-icon">&#128197;</div><h3>No appointments</h3><p>There are no appointments scheduled for this day.</p></div>';
+      }
+
+      document.getElementById('day-timeline').innerHTML = html;
+    }
+
+    // ==========================================
+    // Detail Modal
+    // ==========================================
+    function openDetail(code) {
+      var booking = allBookings.find(function(b) { return getBookingCode(b) === code; });
+      if (!booking) return;
+
+      var status = getBookingStatus(booking);
+      var isPending = status === 'pending';
+
+      var html = '';
+      html += '<div class="confirm-code-box">';
+      html += '<div class="code-label">Confirmation Code</div>';
+      html += '<div class="code-value">' + escapeHtml(getBookingCode(booking)) + '</div>';
+      html += '</div>';
+
+      html += '<div class="detail-row"><span class="detail-label">Patient Name</span><span class="detail-value">' + escapeHtml(getBookingName(booking)) + '</span></div>';
+      if (booking.email) html += '<div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">' + escapeHtml(booking.email) + '</span></div>';
+      if (booking.phone) html += '<div class="detail-row"><span class="detail-label">Phone</span><span class="detail-value">' + escapeHtml(booking.phone) + '</span></div>';
+      html += '<div class="detail-row"><span class="detail-label">Service</span><span class="detail-value">' + escapeHtml(getBookingService(booking)) + '</span></div>';
+      html += '<div class="detail-row"><span class="detail-label">Date</span><span class="detail-value">' + escapeHtml(formatDisplayDate(booking.date || booking.appointmentDate)) + '</span></div>';
+      html += '<div class="detail-row"><span class="detail-label">Time</span><span class="detail-value">' + escapeHtml(formatTime12(getBookingTime(booking))) + '</span></div>';
+      html += '<div class="detail-row"><span class="detail-label">Insurance</span><span class="detail-value">' + escapeHtml(getBookingInsurance(booking) || 'Not specified') + '</span></div>';
+      html += '<div class="detail-row"><span class="detail-label">Status</span><span class="detail-value"><span class="status-badge status-' + status + '">' + status + '</span></span></div>';
+      if (booking.bookedAt || booking.createdAt || booking.timestamp) {
+        html += '<div class="detail-row"><span class="detail-label">Booked At</span><span class="detail-value">' + escapeHtml(booking.bookedAt || booking.createdAt || booking.timestamp) + '</span></div>';
+      }
+
+      document.getElementById('detail-content').innerHTML = html;
+
+      var actionsHtml = '<button class="btn-modal-cancel" onclick="closeDetailModal()">Close</button>';
+      if (isPending) {
+        actionsHtml += '<button class="btn-modal-confirm" onclick="closeDetailModal();handleConfirm(\'' + escapeAttr(code) + '\')">Confirm</button>';
+        actionsHtml += '<button class="btn-modal-decline" onclick="closeDetailModal();handleDecline(\'' + escapeAttr(code) + '\')">Decline</button>';
+      }
+      document.getElementById('detail-actions').innerHTML = actionsHtml;
+
+      document.getElementById('detail-modal').classList.add('active');
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detail-modal').classList.remove('active');
+    }
+
+    // ==========================================
+    // Confirm / Decline Actions
+    // ==========================================
+    function handleConfirm(code) {
+      confirmBooking(code);
+    }
+
+    function handleDecline(code) {
+      pendingActionCode = code;
+      pendingActionType = 'decline';
+      var booking = allBookings.find(function(b) { return getBookingCode(b) === code; });
+      var name = booking ? getBookingName(booking) : 'this patient';
+      document.getElementById('confirm-title').textContent = 'Decline Appointment?';
+      document.getElementById('confirm-msg').textContent = 'Are you sure you want to decline the appointment request for ' + name + '? This action cannot be undone.';
+      document.getElementById('confirm-action-btn').textContent = 'Decline';
+      document.getElementById('confirm-action-btn').className = 'btn-modal-decline';
+      document.getElementById('confirm-dialog').classList.add('active');
+    }
+
+    function closeConfirmDialog() {
+      document.getElementById('confirm-dialog').classList.remove('active');
+      pendingActionCode = null;
+      pendingActionType = null;
+    }
+
+    function executeConfirmedAction() {
+      if (pendingActionType === 'decline' && pendingActionCode) {
+        closeConfirmDialog();
+        declineBooking(pendingActionCode);
+      }
+    }
+
+    // ==========================================
+    // Toast
+    // ==========================================
+    function showToast(msg, type) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show' + (type ? ' ' + type : '');
+      setTimeout(function() { t.className = 'toast'; }, 3000);
+    }
+
+    // ==========================================
+    // Utilities
+    // ==========================================
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function escapeAttr(str) {
+      return escapeHtml(str).replace(/'/g,'&#39;');
+    }
+
+    // ==========================================
+    // Init
+    // ==========================================
+    function initApp() {
+      document.getElementById('setup-banner').classList.toggle('hidden', isConfigured());
+      if (isConfigured()) {
+        loadBookings();
+      } else {
+        updateStats();
+        renderCurrentView();
+      }
+    }
+
+    // Close modals on overlay click
+    document.getElementById('detail-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeDetailModal();
+    });
+    document.getElementById('confirm-dialog').addEventListener('click', function(e) {
+      if (e.target === this) closeConfirmDialog();
+    });
+
+    // Keyboard: Escape to close modals
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (document.getElementById('confirm-dialog').classList.contains('active')) {
+          closeConfirmDialog();
+        } else if (document.getElementById('detail-modal').classList.contains('active')) {
+          closeDetailModal();
+        }
+      }
+    });
+  </script>
+</body>
+</html>

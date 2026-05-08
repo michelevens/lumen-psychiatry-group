@@ -1,0 +1,30 @@
+{
+  "name": "ennhealth-credentialing",
+  "version": "1.0.0",
+  "description": "EnnHealth Telehealth Credentialing & Licensing Platform",
+  "scripts": {
+    "build": "cp index.html sw.js manifest.json www/ && cp -r ui www/ui && cp -r core www/core && cp -r data www/data && cp -r icons www/icons",
+    "cap:sync": "npm run build && npx cap sync",
+    "cap:add:android": "npx cap add android",
+    "cap:add:ios": "npx cap add ios",
+    "cap:open:android": "npx cap open android",
+    "cap:open:ios": "npx cap open ios",
+    "cap:run:android": "npx cap run android",
+    "cap:run:ios": "npx cap run ios"
+  },
+  "keywords": [],
+  "author": "EnnHealth",
+  "license": "PRIVATE",
+  "dependencies": {
+    "@capacitor/android": "^8.2.0",
+    "@capacitor/app": "^8.0.1",
+    "@capacitor/cli": "^8.2.0",
+    "@capacitor/core": "^8.2.0",
+    "@capacitor/haptics": "^8.0.1",
+    "@capacitor/ios": "^8.2.0",
+    "@capacitor/keyboard": "^8.0.1",
+    "@capacitor/local-notifications": "^8.0.2",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.1"
+  }
+}

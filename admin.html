@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XKV341Q96S"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-XKV341Q96S");</script>
+<script src="/ga-events.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://accounts.google.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com; frame-src https://accounts.google.com;">
+
+  <title>Admin — Lumen Psychiatry Group</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+
+  <!-- Fonts (same as main site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal: #2C4A5A; --teal-dark: #1a3545; --teal-light: #3d6478;
+      --gold: #D4A855; --gold-light: #e8c882; --gold-soft: rgba(212,168,85,0.12);
+      --sage: #4a7c6f; --sage-light: #e8f5f0;
+      --slate: #64748b; --light: #f8fafb;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; color: #1e293b; line-height: 1.7; background: #f1f5f9; min-height: 100vh; }
+
+    /* ─── Header ─── */
+    .admin-header {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 50%, var(--teal-light) 100%);
+      padding: 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .admin-header-inner {
+      max-width: 900px; margin: 0 auto; padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .header-logo { width: 42px; height: 42px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    .header-brand-text { display: flex; flex-direction: column; }
+    .header-brand-name { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 18px; color: white; line-height: 1.2; }
+    .header-brand-sub { font-size: 11px; color: var(--gold); font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.2; }
+    .admin-header-right { display: flex; align-items: center; gap: 16px; }
+    .admin-user { color: #b0c4ce; font-size: 13px; }
+    .sign-out-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 7px 18px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(4px); }
+    .sign-out-btn:hover { background: rgba(255,255,255,0.15); border-color: var(--gold); color: var(--gold); }
+
+    /* ─── Hero ─── */
+    .admin-hero {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 60%, #0f2530 100%);
+      padding: 52px 24px 48px; color: white; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .admin-hero::before {
+      content: ''; position: absolute; top: -60%; right: -20%; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212,168,85,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .admin-hero::after {
+      content: ''; position: absolute; bottom: -40%; left: -10%; width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(74,124,111,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .admin-hero-content { position: relative; z-index: 1; }
+    .admin-hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(212,168,85,0.15); border: 1px solid rgba(212,168,85,0.3);
+      border-radius: 100px; padding: 6px 16px; font-size: 12px; font-weight: 600;
+      color: var(--gold-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .admin-hero-badge svg { width: 14px; height: 14px; }
+    .admin-hero h1 {
+      font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 700;
+      margin-bottom: 10px; letter-spacing: -0.5px;
+    }
+    .admin-hero p { color: #9cb8c5; font-size: 15px; max-width: 480px; margin: 0 auto; }
+
+    /* ─── Body ─── */
+    .admin-body { max-width: 1000px; margin: 0 auto; padding: 36px 24px 80px; }
+
+    /* ─── Auth screen ─── */
+    .auth-container {
+      text-align: center; padding: 60px 24px;
+      background: white; border-radius: 20px; border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    }
+    .auth-icon {
+      width: 72px; height: 72px; background: var(--gold-soft);
+      border-radius: 20px; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .auth-icon svg { width: 32px; height: 32px; color: var(--gold); }
+    .auth-container h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; color: var(--teal-dark); margin-bottom: 8px; }
+    .auth-container p { color: var(--slate); font-size: 15px; margin-bottom: 32px; }
+    .auth-divider { width: 40px; height: 3px; background: var(--gold); border-radius: 3px; margin: 0 auto 28px; }
+    .auth-denied { background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 16px 20px; color: #991b1b; font-size: 14px; margin-top: 24px; display: inline-block; }
+
+    #adminPanel { display: none; }
+
+    /* ─── Section header ─── */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', Georgia, serif; font-size: 1.25rem;
+      color: var(--teal-dark); font-weight: 700;
+    }
+    .section-header .subtitle { font-size: 13px; color: var(--slate); }
+
+    /* ─── Day cards ─── */
+    .day-card {
+      background: white; border: 1px solid #e2e8f0; border-radius: 16px;
+      padding: 20px 24px; margin-bottom: 12px;
+      transition: all 0.25s ease; position: relative;
+    }
+    .day-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); border-color: #d0d7de; }
+    .day-card.closed { background: #fafbfc; }
+    .day-card.closed:hover { box-shadow: none; }
+    .day-card-header { display: flex; align-items: center; justify-content: space-between; }
+    .day-card-left { display: flex; align-items: center; gap: 14px; }
+    .day-icon {
+      width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; color: white; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+    }
+    .day-card.closed .day-icon { background: linear-gradient(135deg, #94a3b8 0%, #b0bec5 100%); }
+    .day-card-name { font-weight: 600; font-size: 15px; color: var(--teal-dark); }
+    .day-card.closed .day-card-name { color: #94a3b8; }
+    .day-card-right { display: flex; align-items: center; gap: 10px; }
+    .day-card-times { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid #f1f5f9; }
+    .day-card-times label { font-size: 12px; color: var(--slate); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; min-width: 38px; }
+    .day-card-times select {
+      padding: 9px 14px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 14px;
+      color: #1e293b; background: white; cursor: pointer; transition: all 0.2s;
+      font-family: 'Inter', sans-serif; font-weight: 500;
+    }
+    .day-card-times select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(44,74,90,0.1); }
+    .day-card-times select:disabled { background: #f8fafc; color: #c0c8d0; cursor: not-allowed; }
+    .time-dash { color: #cbd5e1; font-size: 18px; margin: 0 2px; }
+
+    /* ─── Toggle ─── */
+    .toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background: #d1d5db; border-radius: 24px; transition: 0.3s;
+    }
+    .toggle-slider:before {
+      content: ''; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px;
+      background: white; border-radius: 50%; transition: 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .toggle input:checked + .toggle-slider { background: var(--sage); }
+    .toggle input:checked + .toggle-slider:before { transform: translateX(20px); }
+    .toggle-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-left: 8px; vertical-align: middle; }
+    .toggle-label.open { color: var(--sage); }
+    .toggle-label.closed-label { color: #b0b8c0; }
+
+    /* ─── Save bar ─── */
+    .save-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 32px; padding: 24px 28px;
+      background: white; border: 1px solid #e2e8f0; border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+    }
+    .save-btn {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      color: var(--teal-dark); padding: 14px 40px; border: none; border-radius: 12px;
+      font-weight: 700; font-size: 15px; cursor: pointer; transition: all 0.25s;
+      font-family: 'Inter', sans-serif; box-shadow: 0 2px 8px rgba(212,168,85,0.3);
+    }
+    .save-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(212,168,85,0.4); }
+    .save-btn:active { transform: translateY(0); }
+    .save-btn:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
+    .save-status { font-size: 13px; color: var(--sage); font-weight: 600; }
+    .save-status.error { color: #dc2626; }
+
+    /* ─── Footer ─── */
+    .admin-footer {
+      background: var(--teal-dark); color: #6b8a99; text-align: center;
+      padding: 28px 24px; font-size: 13px;
+    }
+    .admin-footer a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+    .admin-footer a:hover { color: var(--gold-light); }
+
+    /* ─── State toggle cards ─── */
+    .state-card {
+      background: white; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.25s;
+    }
+    .state-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+    .state-card.active { background: #f0fdf4; border-color: #86efac; }
+    .state-card.pending { background: #fffbeb; border-color: #fde68a; }
+    .state-card.off { background: #fafbfc; border-color: #e2e8f0; }
+    .state-card.off .state-card-name { color: #94a3b8; }
+    .state-card-left { display: flex; align-items: center; gap: 10px; }
+    .state-card-abbr {
+      width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px; color: white; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+    }
+    .state-card.off .state-card-abbr { background: linear-gradient(135deg, #94a3b8 0%, #b0bec5 100%); }
+    .state-card.active .state-card-abbr { background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%); }
+    .state-card.pending .state-card-abbr { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+    .state-card-name { font-weight: 600; font-size: 14px; color: var(--teal-dark); }
+    .state-card-right { display: flex; align-items: center; gap: 8px; }
+    .state-mode-btn {
+      font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 100px;
+      border: none; cursor: pointer; font-family: inherit; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;
+    }
+    .state-mode-btn.active-mode { background: #dcfce7; color: #166534; }
+    .state-mode-btn.pending-mode { background: #fef3c7; color: #92400e; }
+    .state-mode-btn:hover { opacity: 0.8; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 640px) {
+      body { -webkit-tap-highlight-color: transparent; }
+      .admin-hero { padding: 28px 16px 24px; }
+      .admin-hero h1 { font-size: 1.4rem; }
+      .admin-hero p { font-size: 13px; }
+      .admin-body { padding: 20px 12px 80px; max-width: 100%; }
+      .day-card { padding: 14px 16px; border-radius: 12px; }
+      .day-card-times { flex-wrap: wrap; gap: 8px; }
+      .day-card-times select { flex: 1; min-width: 100px; min-height: 42px; font-size: 15px; border-radius: 10px; }
+      .save-bar { flex-direction: column; gap: 14px; text-align: center; padding: 16px; border-radius: 14px; }
+      .save-btn { width: 100%; padding: 16px; font-size: 16px; border-radius: 12px; }
+      .header-brand-name { font-size: 15px; }
+      .header-logo { width: 36px; height: 36px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+      /* State cards — 2 columns on mobile, compact */
+      #stateCards { grid-template-columns: repeat(2, 1fr) !important; gap: 6px !important; }
+      .state-card { padding: 10px 12px; border-radius: 10px; }
+      .state-card-abbr { width: 30px; height: 30px; font-size: 11px; border-radius: 6px; }
+      .state-card-name { font-size: 12px; }
+      .state-card-left { gap: 8px; }
+      .state-card-right { gap: 6px; }
+      .state-mode-btn { font-size: 9px; padding: 2px 6px; }
+      .toggle { width: 38px; height: 22px; }
+      .toggle-slider:before { height: 16px; width: 16px; }
+      .toggle input:checked + .toggle-slider:before { transform: translateX(16px); }
+
+      /* Admin tool nav cards */
+      .admin-body > div:first-child { grid-template-columns: 1fr !important; }
+
+      /* Auth container */
+      .auth-container { padding: 36px 20px; border-radius: 16px; }
+      #googleSignInBtn { transform: scale(0.9); }
+    }
+
+    @media (max-width: 380px) {
+      #stateCards { grid-template-columns: 1fr !important; }
+      .admin-hero h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <a href="/" class="header-brand">
+        <picture><source srcset="assets/images/logo-192.webp" type="image/webp"><img src="assets/images/logo-192.png" alt="Lumen Logo" class="header-logo" width="192" height="192"></picture>
+        <div class="header-brand-text">
+          <span class="header-brand-name">Lumen</span>
+          <span class="header-brand-sub">Psychiatry</span>
+        </div>
+      </a>
+      <div class="admin-header-right" id="headerRight" style="display: none;">
+        <span class="admin-user" id="adminEmail"></span>
+        <button class="sign-out-btn" onclick="signOut()">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="admin-hero">
+    <div class="admin-hero-content">
+      <div class="admin-hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Admin Panel
+      </div>
+      <h1>Office Hours Management</h1>
+      <p>Configure your practice's available booking hours. Changes are reflected on the website immediately.</p>
+    </div>
+  </section>
+
+  <main class="admin-body">
+
+    <!-- Sign-in screen -->
+    <div id="authContainer" class="auth-container">
+      <div class="auth-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <h2>Admin Access Required</h2>
+      <div class="auth-divider"></div>
+      <p>Sign in with your authorized Google account to manage office hours.</p>
+      <div id="googleSignInBtn"></div>
+      <div id="authDenied" class="auth-denied" style="display: none;">
+        Access denied. Only the practice owner can access this panel.
+      </div>
+    </div>
+
+    <!-- Admin panel (hidden until authenticated) -->
+    <div id="adminPanel">
+
+      <!-- Admin Tools Navigation -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 32px;">
+        <a href="/admin/credentialing-tracker" style="display:flex; align-items:center; gap:12px; background:white; border:1px solid #e2e8f0; border-radius:12px; padding:16px 20px; text-decoration:none; transition:all 0.25s; box-shadow:0 1px 4px rgba(0,0,0,0.04);" onmouseover="this.style.borderColor='#D4A855';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.08)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.boxShadow='0 1px 4px rgba(0,0,0,0.04)'">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#4a7c6f,#2C4A5A);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600;font-size:14px;color:#1a3545;">Credentialing Tracker</div>
+            <div style="font-size:12px;color:#64748b;">Track insurance panel applications</div>
+          </div>
+        </a>
+        <a href="/admin/license-tracker" style="display:flex; align-items:center; gap:12px; background:white; border:1px solid #e2e8f0; border-radius:12px; padding:16px 20px; text-decoration:none; transition:all 0.25s; box-shadow:0 1px 4px rgba(0,0,0,0.04);" onmouseover="this.style.borderColor='#D4A855';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.08)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.boxShadow='0 1px 4px rgba(0,0,0,0.04)'">
+          <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#3b82f6,#1d4ed8);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:600;font-size:14px;color:#1a3545;">State Licenses</div>
+            <div style="font-size:12px;color:#64748b;">Manage licenses, renewals &amp; compliance</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="section-header">
+        <div>
+          <h2>Weekly Schedule</h2>
+          <span class="subtitle">Set open/closed status and hours for each day</span>
+        </div>
+      </div>
+      <div id="dayCards"></div>
+      <div class="save-bar">
+        <div>
+          <button class="save-btn" id="saveBtn" onclick="saveOfficeHours()">Save Changes</button>
+        </div>
+        <span class="save-status" id="saveStatus"></span>
+      </div>
+
+      <!-- ─── Calendar Sources Section ─── -->
+      <div style="margin-top: 48px;">
+        <div class="section-header">
+          <div>
+            <h2>Calendar Sources</h2>
+            <span class="subtitle">Select which Google Calendars are checked for availability when patients book</span>
+          </div>
+        </div>
+        <div id="calendarList" style="display:grid; gap:10px; margin-bottom:16px;">
+          <div style="text-align:center; padding:20px; color:#94a3b8; font-size:14px;">Loading calendars...</div>
+        </div>
+        <div style="font-size:12px; color:#94a3b8; margin-bottom:8px;">Events from checked calendars will block booking time slots. Uncheck calendars you don't want affecting availability.</div>
+      </div>
+
+      <!-- ─── Active States Section ─── -->
+      <div style="margin-top: 48px;">
+        <div class="section-header">
+          <div>
+            <h2>Service States</h2>
+            <span class="subtitle">Toggle which states appear on the website — changes reflect on the landing page immediately after saving</span>
+          </div>
+          <span class="save-status" id="statesSyncStatus" style="font-size: 12px;"></span>
+        </div>
+
+        <!-- Quick stats -->
+        <div style="display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 10px 18px; font-size: 13px;">
+            <strong style="color: #166534;" id="statesActiveCount">0</strong> <span style="color: #4ade80;">Active</span>
+          </div>
+          <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 10px 18px; font-size: 13px;">
+            <strong style="color: #92400e;" id="statesPendingCount">0</strong> <span style="color: #f59e0b;">Pending</span>
+          </div>
+        </div>
+
+        <div id="stateCards" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px;"></div>
+
+        <div class="save-bar" style="margin-top: 24px;">
+          <div>
+            <button class="save-btn" id="saveStatesBtn" onclick="saveActiveStates()">Save State Changes</button>
+          </div>
+          <span class="save-status" id="saveStatesStatus"></span>
+        </div>
+      </div>
+
+      <!-- ─── Testimonials Section ─── -->
+      <div style="margin-top: 48px;">
+        <div class="section-header">
+          <div>
+            <h2>Testimonials</h2>
+            <span class="subtitle">Request, review, and manage patient testimonials for the homepage</span>
+          </div>
+        </div>
+
+        <!-- Request Form -->
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+          <h3 style="font-size: 15px; font-weight: 700; color: var(--teal); margin-bottom: 16px;">Send Review Request</h3>
+          <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end;">
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: var(--slate); margin-bottom: 4px;">Patient Email</label>
+              <input type="email" id="testimonialEmail" placeholder="patient@email.com" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#D4A855'" onblur="this.style.borderColor='#e2e8f0'">
+            </div>
+            <div>
+              <label style="display: block; font-size: 12px; font-weight: 600; color: var(--slate); margin-bottom: 4px;">Patient Name</label>
+              <input type="text" id="testimonialName" placeholder="First name" style="width:100%; padding:10px 14px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; font-family:inherit; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='#D4A855'" onblur="this.style.borderColor='#e2e8f0'">
+            </div>
+            <button onclick="sendTestimonialRequest()" id="sendTestimonialBtn" style="padding:10px 24px; background:var(--gold); color:var(--teal-dark); border:none; border-radius:8px; font-weight:700; font-size:14px; cursor:pointer; transition:all 0.25s; white-space:nowrap;" onmouseover="this.style.background='#e8c882'" onmouseout="this.style.background='#D4A855'">Send Request</button>
+          </div>
+          <div id="testimonialRequestStatus" style="margin-top: 10px; font-size: 13px; display: none;"></div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+          <div style="background: #faf5eb; border: 1px solid #fde68a; border-radius: 10px; padding: 8px 16px; font-size: 13px;">
+            <strong style="color: #92400e;" id="tmRequestedCount">0</strong> <span style="color: #b45309;">Requested</span>
+          </div>
+          <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 8px 16px; font-size: 13px;">
+            <strong style="color: #1e40af;" id="tmPendingCount">0</strong> <span style="color: #3b82f6;">Pending Review</span>
+          </div>
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 8px 16px; font-size: 13px;">
+            <strong style="color: #166534;" id="tmApprovedCount">0</strong> <span style="color: #22c55e;">Published</span>
+          </div>
+          <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 8px 16px; font-size: 13px;">
+            <strong style="color: #991b1b;" id="tmRejectedCount">0</strong> <span style="color: #ef4444;">Rejected</span>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div id="testimonialTabs" style="display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap;">
+          <button class="tm-tab active" onclick="filterTestimonials('all')" data-filter="all" style="padding:6px 16px; border-radius:100px; border:1px solid #e2e8f0; background:var(--teal); color:white; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s;">All</button>
+          <button class="tm-tab" onclick="filterTestimonials('pending')" data-filter="pending" style="padding:6px 16px; border-radius:100px; border:1px solid #e2e8f0; background:white; color:#64748b; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s;">Pending</button>
+          <button class="tm-tab" onclick="filterTestimonials('approved')" data-filter="approved" style="padding:6px 16px; border-radius:100px; border:1px solid #e2e8f0; background:white; color:#64748b; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s;">Published</button>
+          <button class="tm-tab" onclick="filterTestimonials('requested')" data-filter="requested" style="padding:6px 16px; border-radius:100px; border:1px solid #e2e8f0; background:white; color:#64748b; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s;">Requested</button>
+          <button class="tm-tab" onclick="filterTestimonials('rejected')" data-filter="rejected" style="padding:6px 16px; border-radius:100px; border:1px solid #e2e8f0; background:white; color:#64748b; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s;">Rejected</button>
+        </div>
+
+        <!-- Testimonial Cards Container -->
+        <div id="testimonialCards" style="display: grid; gap: 12px;">
+          <div style="text-align:center; padding:32px; color:#94a3b8; font-size:14px;">Loading testimonials...</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="admin-footer">
+    <p>&copy; 2026 Lumen Psychiatry Group LLC &nbsp;|&nbsp; <a href="/">Back to Website</a></p>
+  </footer>
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <script>
+  (function() {
+    // ─── CONFIGURATION ───
+    var GOOGLE_CLIENT_ID = '360271129902-krk5ni5gunp7ggnmsnil5qhdn59uk821.apps.googleusercontent.com';
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz64vu0wcwGn1DPQB2SBpssuA03m_OZdZg8K6sv904ETw6gnoqofXguXycUIMJOKJ_34A/exec';
+    var ALLOWED_EMAIL = 'nageleymichel@gmail.com';
+
+    var DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var DAY_ABBR = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+    var idToken = null;
+
+    // Default hours (same as main.js defaults)
+    var currentHours = {
+      '0': null,
+      '1': { start: 9, end: 22 },
+      '2': { start: 9, end: 22 },
+      '3': { start: 9, end: 22 },
+      '4': { start: 9, end: 22 },
+      '5': { start: 9, end: 22 },
+      '6': { start: 9, end: 22 }
+    };
+
+    // ─── Google Sign-In ───
+    window.onload = function() {
+      if (typeof google !== 'undefined' && google.accounts) {
+        initGoogleSignIn();
+      } else {
+        var checkInterval = setInterval(function() {
+          if (typeof google !== 'undefined' && google.accounts) {
+            clearInterval(checkInterval);
+            initGoogleSignIn();
+          }
+        }, 200);
+      }
+    };
+
+    function initGoogleSignIn() {
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleCredentialResponse,
+        auto_select: false
+      });
+      google.accounts.id.renderButton(
+        document.getElementById('googleSignInBtn'),
+        { theme: 'outline', size: 'large', text: 'signin_with', width: 280 }
+      );
+    }
+
+    function handleCredentialResponse(response) {
+      try {
+        var payload = JSON.parse(atob(response.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+
+        if (payload.email !== ALLOWED_EMAIL) {
+          document.getElementById('authDenied').style.display = 'block';
+          google.accounts.id.disableAutoSelect();
+          return;
+        }
+
+        idToken = response.credential;
+        sessionStorage.setItem('admin_auth', 'true');
+        document.getElementById('authContainer').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('headerRight').style.display = 'flex';
+        document.getElementById('adminEmail').textContent = payload.email;
+
+        loadOfficeHours();
+      } catch (err) {
+        document.getElementById('authDenied').style.display = 'block';
+        document.getElementById('authDenied').textContent = 'Sign-in error. Please try again.';
+      }
+    }
+
+    window.signOut = function() {
+      google.accounts.id.disableAutoSelect();
+      idToken = null;
+      sessionStorage.removeItem('admin_auth');
+      document.getElementById('authContainer').style.display = 'block';
+      document.getElementById('adminPanel').style.display = 'none';
+      document.getElementById('headerRight').style.display = 'none';
+      document.getElementById('authDenied').style.display = 'none';
+    };
+
+    // ─── Load office hours from API ───
+    function loadOfficeHours() {
+      if (!APPS_SCRIPT_URL) {
+        renderDayCards();
+        return;
+      }
+      fetch(APPS_SCRIPT_URL + '?action=getOfficeHours')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.hours) {
+            currentHours = data.hours;
+          }
+          if (data.lastUpdated) {
+            var d = new Date(data.lastUpdated);
+            document.getElementById('saveStatus').textContent = 'Last saved: ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+          }
+          renderDayCards();
+        })
+        .catch(function() {
+          renderDayCards();
+        });
+    }
+
+    // ─── Render day cards ───
+    function renderDayCards() {
+      var container = document.getElementById('dayCards');
+      var html = '';
+      for (var d = 0; d <= 6; d++) {
+        var key = String(d);
+        var isOpen = currentHours[key] !== null && currentHours[key] !== undefined;
+        var startVal = isOpen ? Number(currentHours[key].start) : 9;
+        var endVal = isOpen ? Number(currentHours[key].end) : 22;
+
+        html += '<div class="day-card' + (isOpen ? '' : ' closed') + '" id="dayCard' + d + '">' +
+          '<div class="day-card-header">' +
+            '<div class="day-card-left">' +
+              '<div class="day-icon">' + DAY_ABBR[d] + '</div>' +
+              '<span class="day-card-name">' + DAY_NAMES[d] + '</span>' +
+            '</div>' +
+            '<div class="day-card-right">' +
+              '<label class="toggle">' +
+                '<input type="checkbox" ' + (isOpen ? 'checked' : '') + ' onchange="toggleDay(' + d + ', this.checked)">' +
+                '<span class="toggle-slider"></span>' +
+              '</label>' +
+              '<span class="toggle-label ' + (isOpen ? 'open' : 'closed-label') + '" id="toggleLabel' + d + '">' + (isOpen ? 'Open' : 'Closed') + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="day-card-times" id="dayTimes' + d + '" style="' + (isOpen ? '' : 'display:none') + '">' +
+            '<label>Start</label>' +
+            '<select id="start' + d + '" onchange="markChanged()">' + buildTimeOptions(startVal) + '</select>' +
+            '<span class="time-dash">&mdash;</span>' +
+            '<label>End</label>' +
+            '<select id="end' + d + '" onchange="markChanged()">' + buildTimeOptions(endVal) + '</select>' +
+          '</div>' +
+        '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function buildTimeOptions(selectedHour) {
+      var html = '';
+      for (var h = 0; h <= 23; h++) {
+        for (var m = 0; m < 60; m += 30) {
+          var val = h + m / 60;
+          var hour12 = h > 12 ? h - 12 : h;
+          if (hour12 === 0) hour12 = 12;
+          var ampm = h >= 12 ? 'PM' : 'AM';
+          var minStr = m === 0 ? '00' : '30';
+          var label = hour12 + ':' + minStr + ' ' + ampm;
+          var selected = val === selectedHour ? ' selected' : '';
+          html += '<option value="' + val + '"' + selected + '>' + label + '</option>';
+        }
+      }
+      return html;
+    }
+
+    window.toggleDay = function(day, isOpen) {
+      var card = document.getElementById('dayCard' + day);
+      var times = document.getElementById('dayTimes' + day);
+      var label = document.getElementById('toggleLabel' + day);
+      if (isOpen) {
+        card.classList.remove('closed');
+        times.style.display = 'flex';
+        label.textContent = 'Open';
+        label.className = 'toggle-label open';
+      } else {
+        card.classList.add('closed');
+        times.style.display = 'none';
+        label.textContent = 'Closed';
+        label.className = 'toggle-label closed-label';
+      }
+      markChanged();
+    };
+
+    function markChanged() {
+      document.getElementById('saveStatus').textContent = 'Unsaved changes';
+      document.getElementById('saveStatus').className = 'save-status';
+    }
+
+    // ─── Save office hours ───
+    window.saveOfficeHours = function() {
+      var btn = document.getElementById('saveBtn');
+      var status = document.getElementById('saveStatus');
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+      status.textContent = '';
+      status.className = 'save-status';
+
+      // Collect form data
+      var hours = {};
+      var valid = true;
+      for (var d = 0; d <= 6; d++) {
+        var card = document.getElementById('dayCard' + d);
+        var isOpen = !card.classList.contains('closed');
+        if (!isOpen) {
+          hours[String(d)] = null;
+        } else {
+          var start = parseFloat(document.getElementById('start' + d).value);
+          var end = parseFloat(document.getElementById('end' + d).value);
+          if (start >= end) {
+            status.textContent = DAY_NAMES[d] + ': end time must be after start time';
+            status.className = 'save-status error';
+            btn.disabled = false;
+            btn.textContent = 'Save Changes';
+            valid = false;
+            break;
+          }
+          hours[String(d)] = { start: start, end: end };
+        }
+      }
+      if (!valid) return;
+
+      if (!APPS_SCRIPT_URL) {
+        status.textContent = 'Error: Apps Script URL not configured';
+        status.className = 'save-status error';
+        btn.disabled = false;
+        btn.textContent = 'Save Changes';
+        return;
+      }
+
+      // POST to Apps Script
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          action: 'setOfficeHours',
+          hours: hours,
+          idToken: idToken
+        }),
+        redirect: 'follow'
+      }).then(function(r) {
+        return r.json();
+      }).then(function(result) {
+        if (result.success) {
+          return fetch(APPS_SCRIPT_URL + '?action=getOfficeHours&_t=' + Date.now())
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+              if (data.hours) currentHours = data.hours;
+              status.textContent = 'Saved at ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+              status.className = 'save-status';
+              btn.disabled = false;
+              btn.textContent = 'Save Changes';
+            });
+        } else {
+          status.textContent = 'Error: ' + (result.error || 'Unknown error');
+          status.className = 'save-status error';
+          btn.disabled = false;
+          btn.textContent = 'Save Changes';
+        }
+      }).catch(function(err) {
+        // CORS fetch failed, trying no-cors fallback
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            action: 'setOfficeHours',
+            hours: hours,
+            idToken: idToken
+          })
+        }).then(function() {
+          return new Promise(function(resolve) { setTimeout(resolve, 3000); });
+        }).then(function() {
+          return fetch(APPS_SCRIPT_URL + '?action=getOfficeHours&_t=' + Date.now());
+        }).then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.hours) {
+            currentHours = data.hours;
+            status.textContent = 'Saved at ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+            status.className = 'save-status';
+          } else {
+            status.textContent = 'Save may have failed — hours not found. Please redeploy your Apps Script.';
+            status.className = 'save-status error';
+          }
+          btn.disabled = false;
+          btn.textContent = 'Save Changes';
+        }).catch(function() {
+          status.textContent = 'Network error. Please try again.';
+          status.className = 'save-status error';
+          btn.disabled = false;
+          btn.textContent = 'Save Changes';
+        });
+      });
+    };
+
+    // ═══════════════════════════════════════════
+    // SERVICE STATES — Toggle which states show on landing page
+    // ═══════════════════════════════════════════
+    var LICENSE_API = 'https://script.google.com/macros/s/AKfycbxps6OS1Lk9YpiSzZxI4wuGzpCryhLk85uvKgkH__1mcmZpUo_lZDfECvG9zsOozMf1cQ/exec';
+
+    var ALL_STATES = [
+      { abbr: 'AL', name: 'Alabama' }, { abbr: 'AK', name: 'Alaska' }, { abbr: 'AZ', name: 'Arizona' },
+      { abbr: 'AR', name: 'Arkansas' }, { abbr: 'CA', name: 'California' }, { abbr: 'CO', name: 'Colorado' },
+      { abbr: 'CT', name: 'Connecticut' }, { abbr: 'DE', name: 'Delaware' }, { abbr: 'DC', name: 'Washington DC' },
+      { abbr: 'FL', name: 'Florida' }, { abbr: 'GA', name: 'Georgia' }, { abbr: 'HI', name: 'Hawaii' },
+      { abbr: 'ID', name: 'Idaho' }, { abbr: 'IL', name: 'Illinois' }, { abbr: 'IN', name: 'Indiana' },
+      { abbr: 'IA', name: 'Iowa' }, { abbr: 'KS', name: 'Kansas' }, { abbr: 'KY', name: 'Kentucky' },
+      { abbr: 'LA', name: 'Louisiana' }, { abbr: 'ME', name: 'Maine' }, { abbr: 'MD', name: 'Maryland' },
+      { abbr: 'MA', name: 'Massachusetts' }, { abbr: 'MI', name: 'Michigan' }, { abbr: 'MN', name: 'Minnesota' },
+      { abbr: 'MS', name: 'Mississippi' }, { abbr: 'MO', name: 'Missouri' }, { abbr: 'MT', name: 'Montana' },
+      { abbr: 'NE', name: 'Nebraska' }, { abbr: 'NV', name: 'Nevada' }, { abbr: 'NH', name: 'New Hampshire' },
+      { abbr: 'NJ', name: 'New Jersey' }, { abbr: 'NM', name: 'New Mexico' }, { abbr: 'NY', name: 'New York' },
+      { abbr: 'NC', name: 'North Carolina' }, { abbr: 'ND', name: 'North Dakota' }, { abbr: 'OH', name: 'Ohio' },
+      { abbr: 'OK', name: 'Oklahoma' }, { abbr: 'OR', name: 'Oregon' }, { abbr: 'PA', name: 'Pennsylvania' },
+      { abbr: 'RI', name: 'Rhode Island' }, { abbr: 'SC', name: 'South Carolina' }, { abbr: 'SD', name: 'South Dakota' },
+      { abbr: 'TN', name: 'Tennessee' }, { abbr: 'TX', name: 'Texas' }, { abbr: 'UT', name: 'Utah' },
+      { abbr: 'VT', name: 'Vermont' }, { abbr: 'VA', name: 'Virginia' }, { abbr: 'WA', name: 'Washington' },
+      { abbr: 'WV', name: 'West Virginia' }, { abbr: 'WI', name: 'Wisconsin' }, { abbr: 'WY', name: 'Wyoming' }
+    ];
+
+    var statesData = {}; // abbr → full record from sheet
+    var statesChanged = false;
+
+    // Default 31 states: 28 active + 3 pending
+    var DEFAULT_ACTIVE = ['AK','AZ','CA','CO','CT','DC','FL','IA','ID','KS','MA','MD','MN','MT','ND','NH','NM','NV','NY','OR','SD','TX','UT','VA','VT','WA','WV','WY'];
+    var DEFAULT_PENDING = ['IL','OK','WI'];
+
+    function applyDefaults() {
+      ALL_STATES.forEach(function(s) {
+        var status = 'inactive';
+        if (DEFAULT_ACTIVE.indexOf(s.abbr) !== -1) status = 'active';
+        if (DEFAULT_PENDING.indexOf(s.abbr) !== -1) status = 'pending';
+        statesData[s.abbr] = { abbr: s.abbr, name: s.name, status: status };
+      });
+    }
+
+    function loadActiveStates() {
+      if (!LICENSE_API) {
+        applyDefaults();
+        renderStateCards();
+        return;
+      }
+      var syncEl = document.getElementById('statesSyncStatus');
+      syncEl.textContent = 'Loading...';
+      syncEl.className = 'save-status';
+
+      fetch(LICENSE_API + '?action=getAll', { redirect: 'follow' })
+        .then(function(r) { return r.text(); })
+        .then(function(text) {
+          var result = JSON.parse(text);
+          if (result.success && result.data && result.data.length > 0) {
+            // Check if any states are actually active/pending in the sheet
+            var hasActive = result.data.some(function(row) { return row.status === 'active' || row.status === 'pending'; });
+            if (hasActive) {
+              statesData = {};
+              result.data.forEach(function(row) { statesData[row.abbr] = row; });
+              syncEl.textContent = 'Synced';
+            } else {
+              // Sheet has rows but none active — apply defaults
+              applyDefaults();
+              syncEl.textContent = 'Defaults loaded — save to sync';
+            }
+          } else {
+            applyDefaults();
+            syncEl.textContent = 'Defaults loaded — save to sync';
+          }
+          renderStateCards();
+        })
+        .catch(function(err) {
+          console.error('Failed to load states:', err);
+          applyDefaults();
+          syncEl.textContent = 'Offline — using defaults';
+          syncEl.className = 'save-status error';
+          renderStateCards();
+        });
+    }
+
+    function renderStateCards() {
+      var container = document.getElementById('stateCards');
+      var activeCount = 0;
+      var pendingCount = 0;
+
+      var html = '';
+      ALL_STATES.forEach(function(s) {
+        var record = statesData[s.abbr];
+        var status = record ? record.status : 'inactive';
+        var isOn = status === 'active' || status === 'pending';
+        var cardClass = isOn ? status : 'off';
+
+        if (status === 'active') activeCount++;
+        if (status === 'pending') pendingCount++;
+
+        html += '<div class="state-card ' + cardClass + '" id="sc-' + s.abbr + '">' +
+          '<div class="state-card-left">' +
+            '<div class="state-card-abbr">' + s.abbr + '</div>' +
+            '<span class="state-card-name">' + s.name + '</span>' +
+          '</div>' +
+          '<div class="state-card-right">' +
+            (isOn ? '<button class="state-mode-btn ' + (status === 'active' ? 'active-mode' : 'pending-mode') + '" id="mode-' + s.abbr + '" onclick="toggleStateMode(\'' + s.abbr + '\')">' + (status === 'active' ? 'Active' : 'Pending') + '</button>' : '') +
+            '<label class="toggle">' +
+              '<input type="checkbox" ' + (isOn ? 'checked' : '') + ' onchange="toggleState(\'' + s.abbr + '\', this.checked)">' +
+              '<span class="toggle-slider"></span>' +
+            '</label>' +
+          '</div>' +
+        '</div>';
+      });
+
+      container.innerHTML = html;
+      document.getElementById('statesActiveCount').textContent = activeCount;
+      document.getElementById('statesPendingCount').textContent = pendingCount;
+    }
+
+    window.toggleState = function(abbr, isOn) {
+      if (!statesData[abbr]) {
+        // Create a new record with just the status
+        var stateInfo = ALL_STATES.find(function(s) { return s.abbr === abbr; });
+        statesData[abbr] = { abbr: abbr, name: stateInfo ? stateInfo.name : abbr, status: 'inactive' };
+      }
+      statesData[abbr].status = isOn ? 'active' : 'inactive';
+      statesChanged = true;
+      renderStateCards();
+      document.getElementById('saveStatesStatus').textContent = 'Unsaved changes';
+      document.getElementById('saveStatesStatus').className = 'save-status';
+    };
+
+    window.toggleStateMode = function(abbr) {
+      if (!statesData[abbr]) return;
+      var current = statesData[abbr].status;
+      statesData[abbr].status = current === 'active' ? 'pending' : 'active';
+      statesChanged = true;
+      renderStateCards();
+      document.getElementById('saveStatesStatus').textContent = 'Unsaved changes';
+      document.getElementById('saveStatesStatus').className = 'save-status';
+    };
+
+    window.saveActiveStates = function() {
+      if (!LICENSE_API) return;
+      var btn = document.getElementById('saveStatesBtn');
+      var status = document.getElementById('saveStatesStatus');
+      btn.disabled = true;
+      btn.textContent = 'Saving...';
+      status.textContent = '';
+
+      // Build entries: all states with their current data
+      var entries = ALL_STATES.map(function(s) {
+        var record = statesData[s.abbr] || {};
+        return {
+          abbr: s.abbr,
+          name: s.name,
+          status: record.status || 'inactive',
+          license_type: record.license_type || '',
+          license_number: record.license_number || '',
+          issued: record.issued || '',
+          expiration: record.expiration || '',
+          in_nursys: record.in_nursys || '',
+          ceu_required: record.ceu_required || '',
+          ceu_completed: record.ceu_completed || '',
+          notes: record.notes || ''
+        };
+      });
+
+      fetch(LICENSE_API, {
+        method: 'POST',
+        redirect: 'follow',
+        body: JSON.stringify({ action: 'bulkReplace', entries: entries })
+      })
+      .then(function(r) { return r.text(); })
+      .then(function(text) {
+        var result = JSON.parse(text);
+        if (result.success) {
+          // Update local data with response
+          statesData = {};
+          (result.data || entries).forEach(function(row) { statesData[row.abbr] = row; });
+          statesChanged = false;
+          status.textContent = 'Saved — landing page updated';
+          status.className = 'save-status';
+          renderStateCards();
+        } else {
+          status.textContent = 'Error: ' + (result.error || 'Save failed');
+          status.className = 'save-status error';
+        }
+        btn.disabled = false;
+        btn.textContent = 'Save State Changes';
+      })
+      .catch(function(err) {
+        console.error('Save states failed:', err);
+        status.textContent = 'Network error. Try again.';
+        status.className = 'save-status error';
+        btn.disabled = false;
+        btn.textContent = 'Save State Changes';
+      });
+    };
+
+    // ═══════════════════════════════════════════
+    // CALENDAR SOURCES — Show/toggle which calendars affect availability
+    // ═══════════════════════════════════════════
+    var calendarData = []; // array from getCalendars
+    var selectedCalendarIds = null; // null = all selected (default)
+
+    function loadCalendars() {
+      if (!APPS_SCRIPT_URL) return;
+      fetch(APPS_SCRIPT_URL + '?action=getCalendars')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          calendarData = data.calendars || [];
+          selectedCalendarIds = data.selectedIds || null; // null = all
+          renderCalendarList();
+        })
+        .catch(function() {
+          document.getElementById('calendarList').innerHTML =
+            '<div style="text-align:center; padding:20px; color:#dc2626; font-size:14px;">Could not load calendars. Please try refreshing.</div>';
+        });
+    }
+
+    function renderCalendarList() {
+      var container = document.getElementById('calendarList');
+      if (!calendarData.length) {
+        container.innerHTML = '<div style="text-align:center; padding:20px; color:#94a3b8; font-size:14px;">No calendars found.</div>';
+        return;
+      }
+
+      var allSelected = !selectedCalendarIds; // null = all checked
+      var html = '';
+      for (var i = 0; i < calendarData.length; i++) {
+        var cal = calendarData[i];
+        var isChecked = allSelected || (selectedCalendarIds && selectedCalendarIds.indexOf(cal.id) !== -1);
+        var colorDot = cal.color || '#4986E7';
+
+        html += '<div style="background:white; border:1px solid ' + (isChecked ? '#86efac' : '#e2e8f0') + '; border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; transition:all 0.25s;">' +
+          '<div style="display:flex; align-items:center; gap:12px;">' +
+            '<div style="width:12px; height:12px; border-radius:50%; background:' + colorDot + '; flex-shrink:0;"></div>' +
+            '<div>' +
+              '<div style="font-weight:600; font-size:14px; color:#1a3545;">' + escapeHtml(cal.name) +
+                (cal.primary ? ' <span style="background:#2C4A5A; color:white; font-size:10px; padding:2px 8px; border-radius:100px; margin-left:6px; font-weight:700; letter-spacing:0.5px;">PRIMARY</span>' : '') +
+              '</div>' +
+              '<div style="font-size:12px; color:#94a3b8; margin-top:2px;">' + escapeHtml(cal.id) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<label class="toggle">' +
+            '<input type="checkbox" ' + (isChecked ? 'checked' : '') + ' onchange="toggleCalendar(\'' + escapeAttr(cal.id) + '\', this.checked)">' +
+            '<span class="toggle-slider"></span>' +
+          '</label>' +
+        '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function escapeAttr(str) {
+      return String(str).replace(/'/g, "\\'").replace(/\\/g, '\\\\');
+    }
+
+    window.toggleCalendar = function(calId, isChecked) {
+      // If selectedCalendarIds is null (all selected), initialize from current data
+      if (!selectedCalendarIds) {
+        selectedCalendarIds = calendarData.map(function(c) { return c.id; });
+      }
+
+      if (isChecked) {
+        if (selectedCalendarIds.indexOf(calId) === -1) {
+          selectedCalendarIds.push(calId);
+        }
+      } else {
+        selectedCalendarIds = selectedCalendarIds.filter(function(id) { return id !== calId; });
+      }
+
+      // Auto-save calendar selection
+      saveCalendarSelection();
+      renderCalendarList();
+    };
+
+    function saveCalendarSelection() {
+      if (!APPS_SCRIPT_URL || !idToken) return;
+
+      // If all calendars are selected, save null (means "all")
+      var idsToSave = selectedCalendarIds;
+      if (idsToSave && idsToSave.length === calendarData.length) {
+        idsToSave = []; // empty = all (reset to default)
+      }
+
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          action: 'setCalendars',
+          calendarIds: idsToSave,
+          idToken: idToken
+        }),
+        redirect: 'follow'
+      }).catch(function() {
+        // Fallback: no-cors
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            action: 'setCalendars',
+            calendarIds: idsToSave,
+            idToken: idToken
+          })
+        });
+      });
+    }
+
+    // ═══════════════════════════════════════════
+    // TESTIMONIALS — Request, review, publish patient reviews
+    // ═══════════════════════════════════════════
+    var testimonialData = [];
+    var testimonialFilter = 'all';
+
+    function loadTestimonials() {
+      if (!APPS_SCRIPT_URL || !idToken) return;
+      fetch(APPS_SCRIPT_URL + '?action=getTestimonials&idToken=' + encodeURIComponent(idToken))
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.success) {
+          testimonialData = data.testimonials || [];
+          renderTestimonials();
+        } else {
+          document.getElementById('testimonialCards').innerHTML =
+            '<div style="text-align:center; padding:20px; color:#dc2626; font-size:14px;">Error: ' + escapeHtml(data.error || 'Failed to load') + '</div>';
+        }
+      })
+      .catch(function() {
+        document.getElementById('testimonialCards').innerHTML =
+          '<div style="text-align:center; padding:20px; color:#dc2626; font-size:14px;">Could not load testimonials.</div>';
+      });
+    }
+
+    function renderTestimonials() {
+      var container = document.getElementById('testimonialCards');
+      var counts = { requested: 0, pending: 0, approved: 0, rejected: 0 };
+
+      testimonialData.forEach(function(t) {
+        if (counts[t.status] !== undefined) counts[t.status]++;
+      });
+
+      document.getElementById('tmRequestedCount').textContent = counts.requested;
+      document.getElementById('tmPendingCount').textContent = counts.pending;
+      document.getElementById('tmApprovedCount').textContent = counts.approved;
+      document.getElementById('tmRejectedCount').textContent = counts.rejected;
+
+      var filtered = testimonialFilter === 'all' ? testimonialData : testimonialData.filter(function(t) { return t.status === testimonialFilter; });
+
+      if (!filtered.length) {
+        container.innerHTML = '<div style="text-align:center; padding:32px; color:#94a3b8; font-size:14px;">No testimonials' + (testimonialFilter !== 'all' ? ' with status "' + testimonialFilter + '"' : '') + '.</div>';
+        return;
+      }
+
+      var html = '';
+      // Show newest first
+      filtered = filtered.slice().reverse();
+      filtered.forEach(function(t) {
+        var statusColors = {
+          requested: { bg: '#faf5eb', border: '#fde68a', text: '#b45309', label: 'Requested' },
+          pending: { bg: '#eff6ff', border: '#bfdbfe', text: '#1e40af', label: 'Pending Review' },
+          approved: { bg: '#f0fdf4', border: '#bbf7d0', text: '#166534', label: 'Published' },
+          rejected: { bg: '#fef2f2', border: '#fecaca', text: '#991b1b', label: 'Rejected' }
+        };
+        var sc = statusColors[t.status] || statusColors.requested;
+
+        var stars = '';
+        if (t.rating) {
+          for (var s = 0; s < 5; s++) {
+            stars += '<span style="color:' + (s < t.rating ? '#D4A855' : '#cbd5e1') + '; font-size:16px;">&#9733;</span>';
+          }
+        }
+
+        var dateStr = '';
+        if (t.submittedAt) {
+          var d = new Date(t.submittedAt);
+          dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        } else if (t.requestedAt) {
+          var d2 = new Date(t.requestedAt);
+          dateStr = 'Requested ' + d2.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        html += '<div style="background:white; border:1px solid #e2e8f0; border-radius:12px; padding:20px; transition:all 0.25s;">' +
+          '<div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:12px; flex-wrap:wrap; gap:8px;">' +
+            '<div>' +
+              '<div style="font-weight:700; font-size:14px; color:#1a3545;">' + escapeHtml(t.patientName) + '</div>' +
+              '<div style="font-size:12px; color:#94a3b8;">' + escapeHtml(t.email) + '</div>' +
+            '</div>' +
+            '<span style="background:' + sc.bg + '; border:1px solid ' + sc.border + '; color:' + sc.text + '; padding:3px 12px; border-radius:100px; font-size:11px; font-weight:700; white-space:nowrap;">' + sc.label + '</span>' +
+          '</div>';
+
+        if (t.text) {
+          html += '<div style="margin-bottom:12px;">' + stars + '</div>' +
+            '<div style="margin-bottom:12px;">' +
+              '<div style="font-size:12px; color:#94a3b8; margin-bottom:4px;">Display name: <strong style="color:#1a3545;">' + escapeHtml(t.displayName) + '</strong></div>' +
+              '<blockquote style="color:#475569; font-size:14px; line-height:1.6; margin:0; padding:12px 16px; background:#f8fafb; border-radius:8px; border-left:3px solid #D4A855;">"' + escapeHtml(t.text) + '"</blockquote>' +
+            '</div>';
+        }
+
+        html += '<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">' +
+          '<span style="font-size:12px; color:#94a3b8;">' + dateStr + '</span>';
+
+        if (t.status === 'pending') {
+          html += '<div style="display:flex; gap:8px;">' +
+            '<button onclick="reviewTestimonialAction(\'' + t.token + '\', \'approved\')" style="padding:6px 16px; background:#22c55e; color:white; border:none; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;">Approve</button>' +
+            '<button onclick="reviewTestimonialAction(\'' + t.token + '\', \'rejected\')" style="padding:6px 16px; background:#ef4444; color:white; border:none; border-radius:6px; font-size:12px; font-weight:700; cursor:pointer; transition:all 0.2s;">Reject</button>' +
+          '</div>';
+        }
+
+        html += '</div></div>';
+      });
+
+      container.innerHTML = html;
+    }
+
+    window.filterTestimonials = function(filter) {
+      testimonialFilter = filter;
+      // Update tab styles
+      var tabs = document.querySelectorAll('#testimonialTabs button');
+      tabs.forEach(function(tab) {
+        if (tab.getAttribute('data-filter') === filter) {
+          tab.style.background = 'var(--teal)';
+          tab.style.color = 'white';
+          tab.style.borderColor = 'var(--teal)';
+        } else {
+          tab.style.background = 'white';
+          tab.style.color = '#64748b';
+          tab.style.borderColor = '#e2e8f0';
+        }
+      });
+      renderTestimonials();
+    };
+
+    window.sendTestimonialRequest = function() {
+      var email = document.getElementById('testimonialEmail').value.trim();
+      var name = document.getElementById('testimonialName').value.trim();
+      var statusEl = document.getElementById('testimonialRequestStatus');
+      var btn = document.getElementById('sendTestimonialBtn');
+
+      if (!email || !name) {
+        statusEl.textContent = 'Please enter both email and name.';
+        statusEl.style.color = '#dc2626';
+        statusEl.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      statusEl.style.display = 'none';
+
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          action: 'requestTestimonial',
+          email: email,
+          patientName: name,
+          idToken: idToken
+        }),
+        redirect: 'follow'
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(result) {
+        if (result.success) {
+          statusEl.textContent = 'Review request sent to ' + email;
+          statusEl.style.color = '#166534';
+          document.getElementById('testimonialEmail').value = '';
+          document.getElementById('testimonialName').value = '';
+          loadTestimonials();
+        } else {
+          statusEl.textContent = 'Error: ' + (result.error || 'Failed to send');
+          statusEl.style.color = '#dc2626';
+        }
+        statusEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Send Request';
+      })
+      .catch(function() {
+        // no-cors fallback
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            action: 'requestTestimonial',
+            email: email,
+            patientName: name,
+            idToken: idToken
+          })
+        }).then(function() {
+          statusEl.textContent = 'Request sent (verifying...)';
+          statusEl.style.color = '#166534';
+          statusEl.style.display = 'block';
+          document.getElementById('testimonialEmail').value = '';
+          document.getElementById('testimonialName').value = '';
+          btn.disabled = false;
+          btn.textContent = 'Send Request';
+          setTimeout(loadTestimonials, 3000);
+        });
+      });
+    };
+
+    window.reviewTestimonialAction = function(token, decision) {
+      if (!confirm('Are you sure you want to ' + (decision === 'approved' ? 'approve' : 'reject') + ' this testimonial?')) return;
+
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          action: 'reviewTestimonial',
+          token: token,
+          decision: decision,
+          idToken: idToken
+        }),
+        redirect: 'follow'
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(result) {
+        if (result.success) {
+          loadTestimonials();
+        } else {
+          alert('Error: ' + (result.error || 'Failed'));
+        }
+      })
+      .catch(function() {
+        fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            action: 'reviewTestimonial',
+            token: token,
+            decision: decision,
+            idToken: idToken
+          })
+        }).then(function() {
+          setTimeout(loadTestimonials, 3000);
+        });
+      });
+    };
+
+    // Load states + calendars + testimonials when admin panel opens
+    var origLoadOfficeHours = loadOfficeHours;
+    loadOfficeHours = function() {
+      origLoadOfficeHours();
+      loadActiveStates();
+      loadCalendars();
+      loadTestimonials();
+    };
+
+  })();
+  </script>
+
+</body>
+</html>

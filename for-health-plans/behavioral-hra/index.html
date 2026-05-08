@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+  <title>Behavioral Health HRA for Medicare Advantage Plans | Lumen</title>
+  <meta name="description" content="Close PHQ-9, GAD-7, and SUD HEDIS gaps your in-home HRA vendor misses. Licensed psychiatric NPs across 20+ states — standalone or add-on to Signify, Matrix, HarmonyCares visits.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#2C4A5A">
+  <link rel="canonical" href="https://lumen-psychiatry-group.example/for-health-plans/behavioral-hra/">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+
+  <style>
+    :root { --teal: #2C4A5A; --teal-dark: #1a3545; --teal-light: #3d6478; --gold: #D4A855; --gold-light: #e8c882; --gold-bg: #faf5eb; --sage: #4a7c6f; --sage-light: #e8f5f0; --slate: #64748b; --light: #f8fafb; --white: #ffffff; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: #1e293b; line-height: 1.7; background: var(--light); }
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+    .b2b-header { background: var(--teal-dark); padding: 0; border-bottom: 1px solid rgba(212,168,85,0.15); }
+    .b2b-header-inner { max-width: 1080px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .b2b-header .brand { color: white; text-decoration: none; font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; }
+    .b2b-header .brand .sub { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-left: 8px; }
+    .b2b-header .audience { font-size: 13px; color: #8ba8b5; }
+
+    .hero { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 40%, #1a3040 100%); padding: 80px 24px 70px; color: white; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -40%; right: -15%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,168,85,0.08) 0%, transparent 70%); border-radius: 50%; }
+    .hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,168,85,0.12); border: 1px solid rgba(212,168,85,0.25); color: var(--gold-light); padding: 6px 16px; border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.8rem; font-weight: 700; line-height: 1.15; margin-bottom: 18px; max-width: 760px; }
+    .hero h1 span { color: var(--gold); }
+    .hero .lede { font-size: 1.15rem; color: #b0c4ce; line-height: 1.7; max-width: 680px; margin-bottom: 28px; }
+    .hero-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--teal-dark); padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.2s; }
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,168,85,0.3); }
+    .hero-stats { display: flex; gap: 48px; margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .hero-stat .number { font-family: 'Playfair Display', Georgia, serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+    .hero-stat .label { font-size: 13px; color: #8ba8b5; margin-top: 4px; }
+
+    .section { max-width: 1080px; margin: 0 auto; padding: 72px 24px; }
+    .section-eyebrow { color: var(--gold); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+    .section h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; color: var(--teal); line-height: 1.2; margin-bottom: 16px; max-width: 720px; }
+    .section .intro { font-size: 1.05rem; color: #475569; max-width: 720px; margin-bottom: 40px; }
+
+    .gap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .gap-card { background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 28px 24px; }
+    .gap-card .measure { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+    .gap-card h3 { font-size: 1.05rem; color: var(--teal-dark); margin-bottom: 10px; }
+    .gap-card p { font-size: 14px; color: #475569; line-height: 1.6; }
+
+    .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .model-col h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; color: var(--teal); margin-bottom: 14px; }
+    .model-col ul { list-style: none; padding: 0; }
+    .model-col li { padding: 10px 0; padding-left: 28px; position: relative; color: #374151; font-size: 15px; line-height: 1.6; border-bottom: 1px solid #f1f5f9; }
+    .model-col li::before { content: ''; position: absolute; left: 0; top: 16px; width: 16px; height: 16px; border-radius: 50%; background: var(--sage-light); border: 2px solid var(--sage); }
+    .model-col li strong { color: var(--teal-dark); }
+
+    .integrate-bg { background: linear-gradient(180deg, #ffffff 0%, var(--sage-light) 100%); }
+    .integrate-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .integrate-card { background: white; border: 1px solid #b8ddd1; border-radius: 14px; padding: 32px 28px; }
+    .integrate-card .tag { display: inline-block; background: var(--gold-bg); color: #8a6820; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 100px; margin-bottom: 14px; }
+    .integrate-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; color: var(--teal); margin-bottom: 12px; }
+    .integrate-card p { color: #475569; font-size: 15px; line-height: 1.65; margin-bottom: 12px; }
+    .integrate-card .meta { font-size: 13px; color: var(--sage); font-weight: 600; }
+
+    .contact-section { background: var(--teal-dark); padding: 80px 24px; color: white; }
+    .contact-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .contact-inner h2 { color: white; font-family: 'Playfair Display', Georgia, serif; font-size: 2rem; margin-bottom: 14px; }
+    .contact-inner .intro { color: #b0c4ce; font-size: 1.05rem; margin-bottom: 36px; }
+    .contact-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(212,168,85,0.2); border-radius: 16px; padding: 32px; text-align: left; }
+    .contact-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .contact-form label { display: block; font-size: 12px; color: var(--gold-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .contact-form input, .contact-form select, .contact-form textarea { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 14px; color: white; font-family: inherit; font-size: 15px; }
+    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--gold); background: rgba(255,255,255,0.08); }
+    .contact-form textarea { min-height: 100px; resize: vertical; }
+    .contact-form button { width: 100%; background: var(--gold); color: var(--teal-dark); border: none; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; transition: all 0.2s; margin-top: 8px; }
+    .contact-form button:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .contact-form .legal { font-size: 12px; color: #8ba8b5; margin-top: 14px; text-align: center; }
+    .contact-form .success { display: none; background: rgba(74,124,111,0.15); border: 1px solid var(--sage); border-radius: 10px; padding: 20px; color: #c8e6dc; text-align: center; }
+    .contact-form.submitted .form-fields { display: none; }
+    .contact-form.submitted .success { display: block; }
+
+    .b2b-footer { background: #0f1e27; color: #64748b; text-align: center; padding: 32px 24px; font-size: 13px; }
+    .b2b-footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 56px 20px 48px; }
+      .hero h1 { font-size: 1.9rem; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .section { padding: 48px 20px; }
+      .gap-grid, .model-grid, .integrate-grid { grid-template-columns: 1fr; }
+      .contact-form .row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="b2b-header">
+    <div class="b2b-header-inner">
+      <a href="https://lumen-psychiatry-group.example" class="brand">Lumen<span class="sub">For Health Plans</span></a>
+      <span class="audience">Medicare Advantage &middot; Risk Adjustment &middot; Quality</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="badge">Behavioral HRA Partner</div>
+      <h1>Close the <span>behavioral health gaps</span> your in-home HRA vendor misses.</h1>
+      <p class="lede">Most in-home HRA programs treat depression and substance use as a checkbox. Lumen delivers a licensed psychiatric NP visit that closes PHQ-9, GAD-7, and SUD HEDIS gaps &mdash; standalone, or as an add-on to your existing Signify, Matrix, or HarmonyCares program.</p>
+      <a href="#contact" class="hero-cta">Request a partnership call &rarr;</a>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="number">20+</div><div class="label">State NP licensure</div></div>
+        <div class="hero-stat"><div class="number">100%</div><div class="label">Telehealth-capable</div></div>
+        <div class="hero-stat"><div class="number">NCQA</div><div class="label">Compliant templates</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-eyebrow">The Gap</div>
+    <h2>Behavioral measures your HRA program is probably missing.</h2>
+    <p class="intro">General-purpose HRA vendors are optimized for HCC capture and physical-health screening. Behavioral health HEDIS measures require a different clinical workflow &mdash; and they're the gaps plans lose Stars points on.</p>
+    <div class="gap-grid">
+      <div class="gap-card">
+        <div class="measure">HEDIS DSF</div>
+        <h3>Depression Screening &amp; Follow-Up</h3>
+        <p>PHQ-9 administered, scored, and clinically interpreted &mdash; with a documented follow-up plan when positive. Not just a checkbox on an intake form.</p>
+      </div>
+      <div class="gap-card">
+        <div class="measure">HEDIS SUD</div>
+        <h3>Substance Use Disorder</h3>
+        <p>SBIRT-level alcohol and drug screening (G0442/G0443 eligible), with brief intervention and referral when indicated &mdash; documented to payer specifications.</p>
+      </div>
+      <div class="gap-card">
+        <div class="measure">Stars / CAHPS</div>
+        <h3>Member experience on BH topics</h3>
+        <p>Members report higher satisfaction when BH concerns are addressed by a specialist, not a general-assessment clinician. Drives CAHPS "Getting Needed Care" scores.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:white;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;">
+    <div class="section-eyebrow">Our Model</div>
+    <h2>Built on a mental-health specialty practice &mdash; not a generalist HRA operation.</h2>
+    <p class="intro">Lumen Psychiatry Group operates a telehealth psychiatric practice across 20+ states. The same NPs, infrastructure, and documentation workflows used for longitudinal psychiatric care deliver the behavioral HRA visit.</p>
+    <div class="model-grid">
+      <div class="model-col">
+        <h3>What's different</h3>
+        <ul>
+          <li><strong>Psychiatric NPs, not generalist NPs.</strong> Every visit is conducted by a clinician whose full-time practice is behavioral health.</li>
+          <li><strong>Telehealth-first.</strong> No travel cost, no scheduling friction. Visits completed in days, not weeks.</li>
+          <li><strong>Full-practice-state NP scope.</strong> No physician co-signature requirement in our core states.</li>
+          <li><strong>NCQA-compliant HRA templates</strong> with BH measures built in &mdash; not bolted on.</li>
+        </ul>
+      </div>
+      <div class="model-col">
+        <h3>What we don't do</h3>
+        <ul>
+          <li><strong>We don't replace your primary HRA vendor.</strong> Signify, Matrix, and HarmonyCares do in-home physical assessment well.</li>
+          <li><strong>We don't chase HCC volume.</strong> Our value is measured in BH HEDIS closure rate and Stars impact, not HCCs per visit.</li>
+          <li><strong>We don't treat acute issues on the visit.</strong> We screen, document, and refer &mdash; matching AWV/HRA scope.</li>
+          <li><strong>We don't lock members in.</strong> If longitudinal psych care is needed, we refer to the member's in-network provider.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section integrate-bg" style="max-width:none;padding:72px 24px;">
+    <div style="max-width:1080px;margin:0 auto;">
+      <div class="section-eyebrow">How We Integrate</div>
+      <h2>Two deployment options depending on your existing program.</h2>
+      <p class="intro">Most plans start with the add-on model because it requires no changes to their primary HRA contract. Standalone works best for regional MA plans without an in-home vendor in place.</p>
+      <div class="integrate-grid">
+        <div class="integrate-card">
+          <div class="tag">Option A</div>
+          <h3>Add-on to your existing HRA vendor</h3>
+          <p>Your in-home vendor (Signify, Matrix, HarmonyCares) completes the physical assessment. We follow with a 30-minute telehealth behavioral visit that closes PHQ-9, GAD-7, SUD, and related HEDIS measures.</p>
+          <div class="meta">Fastest to contract &middot; no disruption to primary vendor</div>
+        </div>
+        <div class="integrate-card">
+          <div class="tag">Option B</div>
+          <h3>Standalone behavioral HRA</h3>
+          <p>For members where a full in-home HRA isn't indicated or cost-effective, we deliver a focused behavioral HRA visit covering BH HEDIS measures plus AWV-eligible elements within NP scope.</p>
+          <div class="meta">Best for regional plans &middot; dual-eligible panels &middot; high-BH-burden cohorts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <h2>Request a partnership call</h2>
+      <p class="intro">Tell us about your plan and we'll follow up within two business days with pricing, contract terms, and a proposed pilot scope.</p>
+      <form class="contact-form" id="partnerForm" onsubmit="return submitPartnerForm(event)">
+        <div class="form-fields">
+          <div class="row">
+            <div>
+              <label for="pf-name">Your name</label>
+              <input type="text" id="pf-name" name="name" required autocomplete="name">
+            </div>
+            <div>
+              <label for="pf-title">Title</label>
+              <input type="text" id="pf-title" name="title" placeholder="e.g. Director, Risk Adjustment" autocomplete="organization-title">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="pf-org">Plan / Organization</label>
+              <input type="text" id="pf-org" name="org" required autocomplete="organization">
+            </div>
+            <div>
+              <label for="pf-email">Work email</label>
+              <input type="email" id="pf-email" name="email" required autocomplete="email">
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="pf-lives">MA lives</label>
+              <select id="pf-lives" name="lives">
+                <option value="">Select range</option>
+                <option value="<25k">Under 25,000</option>
+                <option value="25k-100k">25,000 &ndash; 100,000</option>
+                <option value="100k-500k">100,000 &ndash; 500,000</option>
+                <option value="500k+">500,000+</option>
+              </select>
+            </div>
+            <div>
+              <label for="pf-model">Interested in</label>
+              <select id="pf-model" name="model">
+                <option value="">Select option</option>
+                <option value="addon">Add-on to existing HRA vendor</option>
+                <option value="standalone">Standalone behavioral HRA</option>
+                <option value="explore">Not sure &mdash; want to explore</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label for="pf-notes">Anything else we should know</label>
+            <textarea id="pf-notes" name="notes" placeholder="Current vendor, target states, timeline, etc."></textarea>
+          </div>
+          <button type="submit">Send &rarr;</button>
+          <div class="legal">For health plan inquiries only. Not a consumer form. By submitting you agree we may contact you by email or phone regarding a potential partnership.</div>
+        </div>
+        <div class="success">
+          <strong>Thanks &mdash; we received your request.</strong><br>
+          A member of our partnership team will reach out within two business days.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="b2b-footer">
+    &copy; Lumen Psychiatry Group &middot; <a href="https://lumen-psychiatry-group.example">lumen-psychiatry-group.example</a> &middot; Health plan partnerships: <a href="mailto:partnerships@lumen-psychiatry-group.example">partnerships@lumen-psychiatry-group.example</a>
+  </footer>
+
+  <script>
+    // Replace with your Apps Script Web App URL after deploying apps-script-endpoint.gs
+    var PARTNER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxgRe2fM-_8jGGZE8XQl8_Ply3veZHmfvokzYmdCVfK6zgE38gi2qDYUlQ8ctg-mk-a9w/exec';
+
+    function submitPartnerForm(e) {
+      e.preventDefault();
+      var form = document.getElementById('partnerForm');
+      var btn = form.querySelector('button[type=submit]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+      var data = {
+        name: form.name.value,
+        title: form.title.value,
+        org: form.org.value,
+        email: form.email.value,
+        lives: form.lives.value,
+        model: form.model.value,
+        notes: form.notes.value,
+        source: 'behavioral-hra-landing',
+        userAgent: navigator.userAgent,
+        ts: new Date().toISOString()
+      };
+
+      // Apps Script accepts text/plain without triggering CORS preflight.
+      fetch(PARTNER_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (res && res.ok) {
+          form.classList.add('submitted');
+        } else {
+          showFormError(form, btn, 'Something went wrong. Please email partnerships@lumen-psychiatry-group.example.');
+        }
+      })
+      .catch(function(){
+        // Even if the fetch appears to fail (CORS opaque response), the POST
+        // usually succeeded — show success to avoid double submits.
+        form.classList.add('submitted');
+      });
+      return false;
+    }
+
+    function showFormError(form, btn, msg) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send \u2192'; }
+      var existing = form.querySelector('.form-error');
+      if (existing) existing.remove();
+      var err = document.createElement('div');
+      err.className = 'form-error';
+      err.style.cssText = 'background:rgba(220,38,38,0.15);border:1px solid #ef4444;color:#fca5a5;padding:12px;border-radius:8px;margin-top:12px;font-size:13px;text-align:center;';
+      err.textContent = msg;
+      form.querySelector('.form-fields').appendChild(err);
+    }
+  </script>
+
+</body>
+</html>
