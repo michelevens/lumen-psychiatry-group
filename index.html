@@ -902,7 +902,7 @@
       </div>
       <div style="border:1px solid #e2e8f0;border-radius:14px;background:#fff;margin-top:32px;box-shadow:0 4px 16px rgba(15,23,42,.04);padding:64px 32px;text-align:center;">
         <p style="margin:0 auto 32px;color:#475569;font-size:17px;line-height:1.6;max-width:560px;">Compare every plan side by side — pricing, visit limits, and what's included. Pick the membership that fits your care.</p>
-        <a href="https://app.membermd.io/#/plans/5B9DFE" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">View membership plans →</a>
+        <a href="https://app.membermd.io/#/plans/5B9DFE" target="_blank" rel="noopener" onclick="return openMD(this.href)" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">View membership plans →</a>
       </div>
       <div style="max-width:1200px;margin:36px auto 0;text-align:center;">
         <a href="#enroll" class="btn-primary" style="display:inline-block;text-decoration:none;">Become a member</a>
@@ -1058,7 +1058,7 @@
       </div>
       <div style="border:1px solid #e2e8f0;border-radius:14px;background:#fff;margin-top:32px;box-shadow:0 4px 16px rgba(15,23,42,.04);padding:64px 32px;text-align:center;">
         <p style="margin:0 auto 32px;color:#475569;font-size:17px;line-height:1.6;max-width:560px;">Pick a time that works for you — real-time availability, HIPAA-compliant booking, no phone tag.</p>
-        <a href="https://app.membermd.io/#/book/5B9DFE" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">Book an appointment →</a>
+        <a href="https://app.membermd.io/#/book/5B9DFE" target="_blank" rel="noopener" onclick="return openMD(this.href)" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">Book an appointment →</a>
       </div>
     </div>
   </section>
@@ -1073,7 +1073,7 @@
       </div>
       <div style="border:1px solid #e2e8f0;border-radius:14px;background:#fff;margin-top:32px;box-shadow:0 4px 16px rgba(15,23,42,.04);padding:64px 32px;text-align:center;">
         <p style="margin:0 auto 32px;color:#475569;font-size:17px;line-height:1.6;max-width:560px;">Join in under 5 minutes — choose a plan, set up payment, and start booking. All in one secure flow.</p>
-        <a href="https://app.membermd.io/#/enroll/5B9DFE" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">Become a member →</a>
+        <a href="https://app.membermd.io/#/enroll/5B9DFE" target="_blank" rel="noopener" onclick="return openMD(this.href)" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">Become a member →</a>
       </div>
     </div>
   </section>
@@ -1088,7 +1088,7 @@
       </div>
       <div style="border:1px solid #e2e8f0;border-radius:14px;background:#fff;margin-top:32px;box-shadow:0 4px 16px rgba(15,23,42,.04);padding:64px 32px;text-align:center;">
         <p style="margin:0 auto 32px;color:#475569;font-size:17px;line-height:1.6;max-width:560px;">Consent, intake, and agreement signing handled online — before your visit, on your schedule.</p>
-        <a href="https://app.membermd.io/#/sign/3H2jdWdhdOSo5sSQ0xE8j0vdSrXdvBmbMnq0wviWtIMajQ5b" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">Sign your forms →</a>
+        <a href="https://app.membermd.io/#/sign/3H2jdWdhdOSo5sSQ0xE8j0vdSrXdvBmbMnq0wviWtIMajQ5b" target="_blank" rel="noopener" onclick="return openMD(this.href)" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:16px;">Sign your forms →</a>
       </div>
     </div>
   </section>
@@ -1537,6 +1537,38 @@
   <script defer src="dist/main.min.js"></script>
   <script defer src="/mobile-app.js?v=6.0"></script>
   <script defer src="/dist/sw-register.min.js"></script>>
+
+
+  <!-- MemberMD widget popup launcher — opens the SPA in a centered popup
+       window so the visitor stays on this site in the background. The
+       target="_blank" on each CTA is the fallback if popups are blocked. -->
+  <script>
+    (function () {
+      window.openMD = function (url) {
+        var w = 920, h = 900;
+        var left = (screen.width - w) / 2;
+        var top = (screen.height - h) / 2;
+        var features = [
+          'width=' + w,
+          'height=' + h,
+          'left=' + left,
+          'top=' + top,
+          'resizable=yes',
+          'scrollbars=yes',
+          'status=no',
+          'toolbar=no',
+          'menubar=no',
+          'location=no',
+        ].join(',');
+        var win = window.open(url, 'membermd_widget', features);
+        if (!win || win.closed || typeof win.closed === 'undefined') {
+          return true; // popup blocked → let target="_blank" fallback fire
+        }
+        win.focus();
+        return false;
+      };
+    })();
+  </script>
 
 </body>
 </html>
