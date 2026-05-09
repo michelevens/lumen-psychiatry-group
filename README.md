@@ -12,7 +12,7 @@ integration end-to-end on a realistic-looking practice site.
 - Booking widget (in the booking section)
 - Signature widget (new "Patient Forms" section)
 
-All four point at MemberMD tenant_code `PASTE_TENANT_CODE`.
+All four point at MemberMD tenant_code `5B9DFE`.
 
 ## Updating the widget targets
 
